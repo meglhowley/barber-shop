@@ -20,7 +20,6 @@ const reducer = (state, action) => {
 
 const Booking = () => {
   const [state, dispatch] = useReducer(reducer, iState)
-
   useEffect(() => {
     console.log(state.selectedDate)
   }, [state.selectedDate])
@@ -33,7 +32,8 @@ const Booking = () => {
           dispatch({ type: 'setSelectedDate', payload: value })
         }
       />
-      <DateTimePicker />
+      <br />
+      <b>Available Appointments:</b>
     </div>
   )
 }
