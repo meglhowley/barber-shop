@@ -1,6 +1,10 @@
 import Nav from '../components/Nav'
+import { useState } from 'react'
 
 const Barbers = () => {
+  const [selectedBarber, setSelectedBarber] = useState(null)
+  const [barberList, setBarberList] = useState(null)
+
   const allBarbers = [
     {
       firstName: 'Ernie',
@@ -39,17 +43,26 @@ const Barbers = () => {
   const barbersMap = allBarbers.map((barber, idx) => (
     <div key={idx}>
       <p>Barber #: {idx}</p>
-      <img src={barber.smallImgUrl} />
+      <img src={barber.smallImgUrl} height="200" />
       <h2>
         {barber.firstName} {barber.lastInitial}
       </h2>
     </div>
   ))
 
+  console.log(allBarbers[1])
+  // setSelectedBarber(allBarbers[1])
+
   return (
     <div>
       <Nav />
       Barbers Page
+      <div>
+        Selected Barber: <img src={allBarbers[0].bigImgUrl} />
+        <h1>
+          {allBarbers[0].firstName} {allBarbers[0].lastInitial}
+        </h1>
+      </div>
       <div className="allBarbers">{barbersMap}</div>
     </div>
   )
