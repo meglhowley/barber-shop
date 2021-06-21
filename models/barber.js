@@ -27,6 +27,16 @@ module.exports = (sequelize, DataTypes) => {
         field: 'last_name',
         type: DataTypes.STRING,
         allowNull: false
+      },
+      bigImage: {
+        field: 'big_image',
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      smallImage: {
+        field: 'small_image',
+        type: DataTypes.STRING,
+        allowNull: false
       }
     },
     {
