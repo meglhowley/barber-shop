@@ -10,7 +10,7 @@ Emily:
 ***
 
 ### *About the App*
-Barber-Shop Booing is a fully-functional, ready-made barber solution with user authentication that allows clients to sign up, sign in, and book appointments with a specified stylist for a variety of services. As an alternative to relying on 3rd party booking apps like Booksy, Barber-shop offers entrepreneurs and shop owners alike the ability to book appointments directly with their future guests. 
+Barber-Shop Booking is a fully-functional, ready-made barber solution with user authentication that allows clients to sign up, sign in, and book appointments with a specified stylist for a variety of services. As an alternative to relying on 3rd party booking apps like Booksy, Barber-shop offers entrepreneurs and shop owners alike the ability to book appointments directly with their future guests. 
 
 Guests will enjoy a simple user experience with a calendar of options that drills down to an array of 30 min or 60 min time slots, filtered by their preferred stylist- if applicable. Barbers/Stylists have the benefit of posting their individual availabilites on a custom basis.
 ***
