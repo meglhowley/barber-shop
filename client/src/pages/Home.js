@@ -1,10 +1,13 @@
 import Nav from '../components/Nav'
 
+const iState = {}
+
 const Home = () => {
   return (
-    <div>
-      <Nav /> Home Page!
-    </div>
+    <body>
+      <div className="top-section">Top</div>
+      <div className="bottom-section">Bottom</div>
+    </body>
   )
 }
 

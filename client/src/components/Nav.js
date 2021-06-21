@@ -2,12 +2,12 @@ import { NavLink } from 'react-router-dom'
 
 const Nav = () => {
   return (
-    <div>
+    <div className="nav-bar">
       <NavLink className="nav-link" to="/">
         Home
       </NavLink>
       <NavLink className="nav-link" to="/barbers">
-        Meet Our Staff
+        Barbers
       </NavLink>
       <NavLink className="nav-link" to="/services">
         Services
@@ -18,6 +18,8 @@ const Nav = () => {
       <NavLink className="nav-link" to="/account">
         My Account
       </NavLink>
+      <button>Log In</button>
+      <button>Register Now</button>
     </div>
   )
 }
