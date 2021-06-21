@@ -1,5 +1,6 @@
 'use strict'
 const { Model } = require('sequelize')
+const Moment = require('moment')
 module.exports = (sequelize, DataTypes) => {
   class Appointment extends Model {
     /**
@@ -58,7 +59,14 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id'
         }
       },
-      date: DataTypes.DATE,
+      date: {
+        type: DataTypes.DATE,
+        get: function (value) {
+          let currentDate = this.getDataValue(value)
+          console.log(currentDate)
+          return Moment(currentDate).utcOffset(-4)
+        }
+      },
       start: DataTypes.TIME,
       duration: DataTypes.INTEGER
     },
