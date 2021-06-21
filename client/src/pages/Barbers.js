@@ -1,5 +1,12 @@
+import Nav from '../components/Nav'
+
 const Barbers = () => {
-  return <div>Barbers Page</div>
+  return (
+    <div>
+      <Nav />
+      Barbers Page
+    </div>
+  )
 }
 
 export default Barbers
