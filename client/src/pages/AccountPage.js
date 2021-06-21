@@ -1,5 +1,12 @@
+import Nav from '../components/Nav'
+
 const AccountPage = () => {
-  return <div>Account Page</div>
+  return (
+    <div>
+      <Nav />
+      Account Page
+    </div>
+  )
 }
 
 export default AccountPage
