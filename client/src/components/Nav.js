@@ -18,6 +18,8 @@ const Nav = () => {
       <NavLink className="nav-link" to="/account">
         My Account
       </NavLink>
+      <button>Log In</button>
+      <button>Register Now</button>
     </div>
   )
 }
