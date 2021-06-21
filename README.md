@@ -1,10 +1,10 @@
 # Barber-Shop Booking
 ![image](https://www.headcurve.com/wp-content/uploads/2018/12/Barbershop-interior-design-dec8-00005.jpg)
-***
-### Creators: Megan Howley, Jake Peck, & Emily Westerback
-#### Megan: [LinkedIn](https://www.linkedin.com/in/megan-l-howley-4b568199/) | [GitHub](https://github.com/meglhowley) | [Trello Board](https://trello.com/b/pCm4LABs/take-a-hike)
-Jake: 
-Emily: 
+
+### Creators: Megan Howley, Jake Peck, & Emily Westerback | [Trello Board](https://trello.com/b/0SNr5dtp/barbershopbooking)
+#### Megan: [LinkedIn](https://www.linkedin.com/in/megan-l-howley-4b568199/) | [GitHub](https://github.com/meglhowley) 
+#### Jake: [LinkedIn]( https://www.linkedin.com/in/jake-peck/) | [GitHub](https://github.com/jakepeck)
+#### Emily: [LinkedIn]( https://www.linkedin.com/in/emily-westerback/) | [GitHub](https://github.com/ewesterback)
 ***
 #### Date: 6/20/2021
 ***
