@@ -1,6 +1,6 @@
 import './App.css'
 import { Route, Switch } from 'react-router-dom'
-import { useReducer, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Home from './pages/Home'
 import Barbers from './pages/Barbers'
 import Booking from './pages/Booking'
@@ -9,37 +9,36 @@ import Services from './pages/Services'
 import Nav from './components/Nav'
 import LogInPage from './pages/LogInPage'
 
-const iState = {
-  authenticated: false,
-  isLoggedIn: false,
-  isRegistered: false
-}
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'setAuthenticated':
-      return { ...state, authenticated: action.payload }
-    case 'toggleLoginOpen':
-      return { ...state, isLoggedIn: action.payload }
-    case 'toggleRegisterOpen':
-      return { ...state, isRegistered: action.payload }
-    default:
-      return state
-  }
-}
-
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, iState)
+  const [authenticated, setAuthenticated] = useState(false)
+  const [loginOpen, toggleLoginOpen] = useState(false)
+  const [registerOpen, toggleRegisterOpen] = useState(false)
 
   const logOut = () => {
-    dispatch({ type: 'setAuthenticated', payload: false })
+    setAuthenticated(false)
     localStorage.clear()
   }
+
+  const getToken = () => {
+    let token = localStorage.getItem('token')
+    if (token) {
+      return setAuthenticated(true)
+    }
+  }
+
+  useEffect(() => {
+    getToken()
+  }, [])
 
   return (
     <div className="App">
       <header>
-        <Nav />
+        <Nav
+          toggleLogin={toggleLoginOpen}
+          toggleRegister={toggleRegisterOpen}
+          authenticated={authenticated}
+          logOut={logOut}
+        />
       </header>
       <Switch>
         <Route exact path="/" component={(props) => <Home {...props} />} />
@@ -51,15 +50,18 @@ const App = () => {
         <Route
           exact
           path="/booking"
-          component={(props) => (
-            <Booking {...props} iState={iState} dispatch={dispatch} />
-          )}
+          component={(props) => <Booking {...props} />}
         />
         <Route
           exact
           path="/loginPage"
           component={(props) => (
-            <LogInPage {...props} iState={iState} dispatch={dispatch} />
+            <LogInPage
+              {...props}
+              loginOpen={loginOpen}
+              toggleLoginOpen={toggleLoginOpen}
+              setAuthenticated={setAuthenticated}
+            />
           )}
         />
         <Route
