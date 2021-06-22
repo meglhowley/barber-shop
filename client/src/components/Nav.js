@@ -1,7 +1,7 @@
+import { ProgressStep } from 'react-rainbow-components'
 import { NavLink } from 'react-router-dom'
 
 const Nav = (props) => {
-  console.log(props.toggleLoginOpen)
   return (
     <div className="nav-bar">
       <img className="monacle" src="https://i.imgur.com/Wq8uo6t.png" />
