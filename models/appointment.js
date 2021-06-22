@@ -11,19 +11,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Appointment.belongsTo(models.User, {
-        foreignKey: 'user_id',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
+        foreignKey: 'userId'
       })
       Appointment.belongsTo(models.Barber, {
-        foreignKey: 'barber_id',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
+        foreignKey: 'barberId'
       })
-      Appointment.belongsTo(models.Service, {
-        foreignKey: 'service_id',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
+      Appointment.belongsTo(models.Services, {
+        foreignKey: 'serviceId'
       })
     }
   }
@@ -32,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       barberId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        field: 'barber_id',
         onDelete: 'CASCADE',
         references: {
           model: 'barbers',
@@ -42,7 +35,6 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         allowNull: true,
-        field: 'user_id',
         onDelete: 'CASCADE',
         references: {
           model: 'users',
@@ -52,7 +44,6 @@ module.exports = (sequelize, DataTypes) => {
       serviceId: {
         type: DataTypes.INTEGER,
         allowNull: true,
-        field: 'service_id',
         onDelete: 'CASCADE',
         references: {
           model: 'services',

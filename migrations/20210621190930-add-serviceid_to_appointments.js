@@ -5,7 +5,6 @@ module.exports = {
     await queryInterface.addColumn('appointments', 'serviceId', {
       type: Sequelize.INTEGER,
       allowNull: true,
-      field: 'service_id',
       onDelete: 'CASCADE',
       references: {
         model: 'services',

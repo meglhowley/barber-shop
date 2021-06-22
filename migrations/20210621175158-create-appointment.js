@@ -11,7 +11,6 @@ module.exports = {
       barberId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        field: 'barber_id',
         onDelete: 'CASCADE',
         references: {
           model: 'barbers',
@@ -21,7 +20,6 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: true,
-        field: 'user_id',
         onDelete: 'CASCADE',
         references: {
           model: 'users',
@@ -38,13 +36,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       createdAt: {
-        field: 'created_at',
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
       },
       updatedAt: {
-        field: 'updated_at',
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
