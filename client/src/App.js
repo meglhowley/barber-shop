@@ -35,7 +35,7 @@ const App = () => {
       <header>
         <Nav
           toggleLoginOpen={toggleLoginOpen}
-          toggleRegister={toggleRegisterOpen}
+          toggleRegisterOpen={toggleRegisterOpen}
           authenticated={authenticated}
           logOut={logOut}
         />
