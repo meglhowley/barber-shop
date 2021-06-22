@@ -27,10 +27,7 @@ const LogIn = (props) => {
     }
   }
 
-  useEffect(() => {
-    console.log(loginForm)
-    console.log(props.toggleLoginOpen)
-  }, [loginForm])
+  useEffect(() => {}, [loginForm])
 
   return (
     <div>
