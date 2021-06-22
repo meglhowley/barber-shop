@@ -9,13 +9,19 @@ import Services from './pages/Services'
 import Nav from './components/Nav'
 
 const iState = {
-  authenticated: false
+  authenticated: false,
+  loginOpen: false,
+  registerOpen: false
 }
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'setAuthenticated':
       return { ...state, authenticated: action.payload }
+    case 'toggleLoginOpen':
+      return { ...state, loginOpen: action.payload }
+    case 'toggleRegisterOpen':
+      return { ...state, registerOpen: action.payload }
     default:
       return state
   }
@@ -23,6 +29,12 @@ const reducer = (state, action) => {
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, iState)
+
+  const logOut = () => {
+    dispatch({ type: 'setAuthenticated', payload: false })
+    localStorage.clear()
+  }
+
   return (
     <div className="App">
       <header>
