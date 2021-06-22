@@ -33,7 +33,6 @@ const LogIn = (props) => {
 
   return (
     <div>
-      LogIn component
       <Modal
         isOpen={props.loginOpen}
         onRequestClose={() => props.toggleLoginOpen(false)}

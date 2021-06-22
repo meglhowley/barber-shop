@@ -39,8 +39,10 @@ const Register = (props) => {
 
   return (
     <div>
-      Register Component
-      <Modal isOpen={props.registerOpen}>
+      <Modal
+        isOpen={props.registerOpen}
+        onRequestClose={() => props.toggleRegisterOpen(false)}
+      >
         <form onSubmit={handleSubmit}>
           <label>First Name</label>
           <input
