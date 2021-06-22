@@ -1,5 +1,7 @@
 import { Modal } from 'react-rainbow-components'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { BASE_URL } from '../globals'
 
 const LogIn = (props) => {
   const [loginForm, handleLoginForm] = useState({
@@ -7,33 +9,34 @@ const LogIn = (props) => {
     password: ''
   })
 
-  console.log('this is the login component state:')
-  console.log(props)
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    handleLoginForm({ ...loginForm, [name]: value })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      // const res = await axios.post(`${BASE_URL}/auth/login`, loginForm)
-      // localStorage.setItem('token', res.data.token)
-      // props.toggleAuthenticated(true)
-      // props.toggleLogin(false)
+      const res = await axios.post(`${BASE_URL}/auth/login`, loginForm)
+      localStorage.setItem('token', res.data.token)
+      props.toggleAuthenticated(true)
+      props.toggleLoginOpen(false)
       handleLoginForm({ email: '', password: '' })
     } catch (error) {
       console.log(error)
     }
   }
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    handleLoginForm({ ...loginForm, [name]: value })
-  }
+  useEffect(() => {
+    console.log(loginForm)
+    console.log(props.toggleLoginOpen)
+  }, [loginForm])
 
   return (
     <div>
       LogIn component
       {/* <Modal isOpen={props.loginOpen}> */}
-      {/* <Modal.Content> */}
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Email</label>
         <input
           type="email"
@@ -52,10 +55,9 @@ const LogIn = (props) => {
           onChange={handleChange}
           required
         />
-        <button onClick={() => props.toggleLogin(false)}>Close</button>
-        <button onClick={handleSubmit}>LogIn</button>
+        <button onClick={props.toggleLoginOpen(false)}>Close</button>
+        <button>LogIn</button>
       </form>
-      {/* </Modal.Content> */}
       {/* </Modal> */}
     </div>
   )

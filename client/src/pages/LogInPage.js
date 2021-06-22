@@ -8,22 +8,23 @@ import LogIn from '../components/LogIn'
 import Register from '../components/Register'
 
 const LogInPage = (props) => {
-  console.log('this is the loginpage component state:')
-  console.log(props.dispatch)
   return (
     <div>
       LogInPage
       <div>
         <LogIn
-          isLoggedIn={props.iState.isLoggedIn}
-          toggleLogin={props.dispatch.toggleLogin}
-          toggleAuthenticated={props.dispatch.toggleAuthenticated}
-          dispatch={props.dispatch}
+          loginOpen={props.loginOpen}
+          toggleLoginOpen={props.toggleLoginOpen}
+          setAuthenticated={props.setAuthenticated}
         />
       </div>
       <div>
         Register Component below:
-        <Register />
+        <Register
+          registerOpen={true}
+          toggleRegister={props.toggleRegisterOpen}
+          setAuthenticated={props.setAuthenticated}
+        />
       </div>
     </div>
   )
