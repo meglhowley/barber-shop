@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
-const Nav = () => {
+const Nav = (props) => {
   return (
     <div className="nav-bar">
       <img className="monacle" src="https://i.imgur.com/Wq8uo6t.png" />
@@ -22,7 +22,9 @@ const Nav = () => {
       </NavLink>
       <div className="btns-container">
         <button className="nav-btn">Sign Up</button>
-        <button className="nav-btn">Log In</button>
+        <button onClick={props.toggleLoginOpen(true)} className="nav-btn">
+          Log In
+        </button>
       </div>
     </div>
   )

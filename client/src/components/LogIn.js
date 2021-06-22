@@ -1,14 +1,11 @@
 import { Modal } from 'react-rainbow-components'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const LogIn = (props) => {
   const [loginForm, handleLoginForm] = useState({
     email: '',
     password: ''
   })
-
-  console.log('this is the login component state:')
-  console.log(props)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -17,7 +14,7 @@ const LogIn = (props) => {
       // localStorage.setItem('token', res.data.token)
       // props.toggleAuthenticated(true)
       // props.toggleLogin(false)
-      handleLoginForm({ email: '', password: '' })
+      // handleLoginForm({ email: '', password: '' })
     } catch (error) {
       console.log(error)
     }
@@ -27,6 +24,10 @@ const LogIn = (props) => {
     const { name, value } = e.target
     handleLoginForm({ ...loginForm, [name]: value })
   }
+
+  useEffect(() => {
+    console.log(loginForm)
+  }, [loginForm])
 
   return (
     <div>
