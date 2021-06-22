@@ -4,6 +4,7 @@ import { Calendar } from 'react-rainbow-components'
 import { DateTimePicker } from 'react-rainbow-components'
 import { useReducer, useEffect, useState } from 'react'
 import Nav from '../components/Nav'
+import LogIn from '../components/LogIn'
 
 const iState = {
   selectedDate: new Date()
@@ -37,6 +38,9 @@ const Booking = () => {
       </div>
       <div className="available-wrapper">
         <b>Available Appointments:</b>
+      </div>
+      <div>
+        <LogIn />
       </div>
     </div>
   )
