@@ -62,6 +62,7 @@ const App = () => {
               toggleLoginOpen={toggleLoginOpen}
               setAuthenticated={setAuthenticated}
               registerOpen={registerOpen}
+              toggleRegisterOpen={toggleRegisterOpen}
             />
           )}
         />

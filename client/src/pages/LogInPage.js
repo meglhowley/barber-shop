@@ -21,8 +21,8 @@ const LogInPage = (props) => {
       <div>
         Register Component below:
         <Register
-          registerOpen={true}
-          toggleRegister={props.toggleRegisterOpen}
+          registerOpen={props.registerOpen}
+          toggleRegisterOpen={props.toggleRegisterOpen}
           setAuthenticated={props.setAuthenticated}
         />
       </div>

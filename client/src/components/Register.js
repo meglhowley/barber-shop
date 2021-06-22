@@ -74,7 +74,7 @@ const Register = (props) => {
             required
           />
         </form>
-        <button onClick={() => props.toggleRegister(false)}>Close</button>
+        <button onClick={() => props.toggleRegisterOpen}>Close</button>
         <button
           disabled={
             !registerForm.email ||
