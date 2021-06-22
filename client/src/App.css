@@ -144,17 +144,23 @@ body {
 }
 
 .allBarbers img {
-  border-radius: 1rem;
   margin: 0.5rem;
+  max-height: 200px;
+  max-width: 200px;
+  border-radius: 50%;
+  border: 1rem solid black;
+  height: 200px;
+  width: 200px;
 }
 
 .selectedBarber img {
   max-height: 70vh;
   margin: 0 auto;
+  max-width: 100%;
 }
 
 .selectedBarber {
-  margin: 0 auto;
+  margin: 1rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -196,4 +202,9 @@ body {
 .allServices div p {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.barberPageContainer {
+  max-width: 80vw;
+  margin: 0 auto;
 }
