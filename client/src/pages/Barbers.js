@@ -49,8 +49,8 @@ const Barbers = () => {
 
   const barbersMap = allBarbers.map((barber, idx) => (
     <div key={idx}>
-      <p>Barber #: {idx}</p>
-      <img src={barber.smallImgUrl} height="200" />
+      {/* <p>Barber #: {idx}</p> */}
+      <img src={barber.smallImgUrl} />
       <h2>
         {barber.firstName} {barber.lastInitial}
       </h2>
@@ -60,9 +60,9 @@ const Barbers = () => {
   // console.log(allBarbers[1])
 
   return (
-    <div>
+    <div className="barberPageContainer">
       <div className="selectedBarber">
-        Selected Barber: <img src={selectedBarber.bigImgUrl} />
+        <img src={selectedBarber.bigImgUrl} />
         <h1>
           {selectedBarber.firstName} {selectedBarber.lastInitial}
         </h1>
