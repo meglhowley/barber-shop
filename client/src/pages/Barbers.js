@@ -57,13 +57,13 @@ const Barbers = () => {
     </div>
   ))
 
-  console.log(allBarbers[1])
+  // console.log(allBarbers[1])
 
   return (
     <div>
       <Nav />
       Barbers Page
-      <div>
+      <div className="selectedBarber">
         Selected Barber: <img src={selectedBarber.bigImgUrl} />
         <h1>
           {selectedBarber.firstName} {selectedBarber.lastInitial}
