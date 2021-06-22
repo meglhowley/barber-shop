@@ -144,17 +144,23 @@ body {
 }
 
 .allBarbers img {
-  border-radius: 1rem;
   margin: 0.5rem;
+  max-height: 200px;
+  max-width: 200px;
+  border-radius: 50%;
+  border: 1rem solid black;
+  height: 200px;
+  width: 200px;
 }
 
 .selectedBarber img {
   max-height: 70vh;
   margin: 0 auto;
+  max-width: 100%;
 }
 
 .selectedBarber {
-  margin: 0 auto;
+  margin: 1rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -163,15 +169,42 @@ body {
 }
 
 .allServices {
-  margin: 0 auto;
   display: flex;
   flex-flow: column;
+  border: 5px solid black;
+  width: 60vw;
+  margin: 1em auto;
+  font-family: 'Lobster', cursive;
 }
 
 .allServices div {
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  position: relative;
+  padding: 0 1em;
+}
+
+.allServices div h3 {
+  color: green;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1.5em 1em 0 0;
+}
+
+.allServices div h2 {
+  margin: 1em 0 0 0;
+}
+
+.allServices div p {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.barberPageContainer {
+  max-width: 80vw;
+  margin: 0 auto;
 }
