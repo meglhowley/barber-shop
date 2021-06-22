@@ -129,3 +129,35 @@ body {
   margin-left: 15px;
   margin-top: -3px;
 }
+
+.allBarbers {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: 'Lobster', cursive;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.allBarbers h2 {
+  text-align: center;
+}
+
+.allBarbers img {
+  border-radius: 1rem;
+  margin: 0.5rem;
+}
+
+.selectedBarber img {
+  max-height: 70vh;
+  margin: 0 auto;
+}
+
+.selectedBarber {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lobster', cursive;
+}
