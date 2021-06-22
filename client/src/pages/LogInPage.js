@@ -20,7 +20,11 @@ const LogInPage = (props) => {
       </div>
       <div>
         Register Component below:
-        <Register />
+        <Register
+          registerOpen={true}
+          toggleRegister={props.toggleRegisterOpen}
+          setAuthenticated={props.setAuthenticated}
+        />
       </div>
     </div>
   )
