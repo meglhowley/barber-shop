@@ -52,22 +52,3 @@ module.exports = (sequelize, DataTypes) => {
   )
   return Barber
 }
-
-// static associate(models) {
-//   // define association here
-//   Provider.belongsToMany(models.User, {
-//     through: models.Appointment,
-//     foreignKey: 'providerId',
-//     as: 'customer'
-//   })
-// }
-// }
-// Provider.init(
-// {
-//   name: DataTypes.STRING,
-//   availability: DataTypes.JSONB
-// },
-// {
-//   sequelize,
-//   modelName: 'Provider',
-//   tableName: 'providers'
