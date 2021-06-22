@@ -7,8 +7,8 @@ import Booking from './pages/Booking'
 import AccountPage from './pages/AccountPage'
 import Services from './pages/Services'
 import Nav from './components/Nav'
-import LogInPage from './pages/LogInPage'
 import LogIn from './components/LogIn'
+import Register from './components/Register'
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
@@ -40,6 +40,16 @@ const App = () => {
           authenticated={authenticated}
           logOut={logOut}
         />
+        <LogIn
+          loginOpen={loginOpen}
+          toggleLoginOpen={toggleLoginOpen}
+          setAuthenticated={setAuthenticated}
+        />
+        <Register
+          registerOpen={registerOpen}
+          toggleRegisterOpen={toggleRegisterOpen}
+          setAuthenticated={setAuthenticated}
+        />
       </header>
       <Switch>
         <Route exact path="/" component={(props) => <Home {...props} />} />
@@ -52,20 +62,6 @@ const App = () => {
           exact
           path="/booking"
           component={(props) => <Booking {...props} />}
-        />
-        <Route
-          exact
-          path="/loginPage"
-          component={(props) => (
-            <LogInPage
-              {...props}
-              loginOpen={loginOpen}
-              toggleLoginOpen={toggleLoginOpen}
-              setAuthenticated={setAuthenticated}
-              registerOpen={registerOpen}
-              toggleRegisterOpen={toggleRegisterOpen}
-            />
-          )}
         />
         <Route
           exact

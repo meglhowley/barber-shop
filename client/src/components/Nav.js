@@ -2,9 +2,14 @@ import { ProgressStep } from 'react-rainbow-components'
 import { NavLink } from 'react-router-dom'
 
 const Nav = (props) => {
-  const handleClick = (e) => {
+  const handleClickLogIn = (e) => {
     e.preventDefault()
     props.toggleLoginOpen(true)
+  }
+
+  const handleClickRegister = (e) => {
+    e.preventDefault()
+    props.toggleRegisterOpen(true)
   }
 
   return (
@@ -27,8 +32,10 @@ const Nav = (props) => {
         My Account
       </NavLink>
       <div className="btns-container">
-        <button className="nav-btn">Sign Up</button>
-        <button onClick={handleClick} className="nav-btn">
+        <button onClick={handleClickRegister} className="nav-btn">
+          Sign Up
+        </button>
+        <button onClick={handleClickLogIn} className="nav-btn">
           Log In
         </button>
       </div>
