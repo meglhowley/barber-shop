@@ -31,32 +31,30 @@ const LogIn = (props) => {
   return (
     <div>
       LogIn component
-      {/* <Modal isOpen={props.loginOpen}> */}
-      {/* <Modal.Content> */}
-      <form>
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="jane@mail.com"
-          value={loginForm.email}
-          onChange={handleChange}
-          required
-        />
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Your Password"
-          value={loginForm.password}
-          onChange={handleChange}
-          required
-        />
-        <button onClick={() => props.toggleLogin(false)}>Close</button>
-        <button onClick={handleSubmit}>LogIn</button>
-      </form>
-      {/* </Modal.Content> */}
-      {/* </Modal> */}
+      <Modal isOpen={props.loginOpen}>
+        <form>
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="jane@mail.com"
+            value={loginForm.email}
+            onChange={handleChange}
+            required
+          />
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Your Password"
+            value={loginForm.password}
+            onChange={handleChange}
+            required
+          />
+          <button onClick={() => props.toggleLogin(false)}>Close</button>
+          <button onClick={handleSubmit}>LogIn</button>
+        </form>
+      </Modal>
     </div>
   )
 }
