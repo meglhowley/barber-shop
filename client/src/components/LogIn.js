@@ -18,44 +18,47 @@ const LogIn = (props) => {
     e.preventDefault()
     try {
       const res = await axios.post(`${BASE_URL}/auth/login`, loginForm)
+      console.log(res)
       localStorage.setItem('token', res.data.token)
-      props.toggleAuthenticated(true)
-      props.toggleLoginOpen(false)
       handleLoginForm({ email: '', password: '' })
     } catch (error) {
       console.log(error)
     }
   }
 
-  useEffect(() => {}, [loginForm])
+  useEffect(() => {
+    console.log(props.loginOpen)
+  }, [loginForm])
 
   return (
     <div>
       LogIn component
-      {/* <Modal isOpen={props.loginOpen}> */}
-      <form onSubmit={handleSubmit}>
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="jane@mail.com"
-          value={loginForm.email}
-          onChange={handleChange}
-          required
-        />
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Your Password"
-          value={loginForm.password}
-          onChange={handleChange}
-          required
-        />
-        <button onClick={props.toggleLoginOpen(false)}>Close</button>
-        <button>LogIn</button>
-      </form>
-      {/* </Modal> */}
+      <Modal
+        isOpen={props.loginOpen}
+        onRequestClose={() => props.toggleLoginOpen(false)}
+      >
+        <form onSubmit={handleSubmit}>
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="jane@mail.com"
+            value={loginForm.email}
+            onChange={handleChange}
+            required
+          />
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Your Password"
+            value={loginForm.password}
+            onChange={handleChange}
+            required
+          />
+          <button>LogIn</button>
+        </form>
+      </Modal>
     </div>
   )
 }
