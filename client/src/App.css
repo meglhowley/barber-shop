@@ -161,3 +161,17 @@ body {
   justify-content: center;
   font-family: 'Lobster', cursive;
 }
+
+.allServices {
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column;
+}
+
+.allServices div {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
