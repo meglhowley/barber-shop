@@ -5,8 +5,12 @@ const iState = {}
 const Home = () => {
   return (
     <body>
-      <div className="top-section">Top</div>
-      <div className="bottom-section">Bottom</div>
+      <div className="home-wrapper">
+        <div className="top-section">
+          <div className="title">We care about beards.</div>
+        </div>
+        <div className="bottom-section">Bottom</div>
+      </div>
     </body>
   )
 }
