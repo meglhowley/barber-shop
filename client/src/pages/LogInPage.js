@@ -14,7 +14,7 @@ const LogInPage = (props) => {
       <div>
         <LogIn
           loginOpen={props.loginOpen}
-          toggleLogin={props.toggleLoginOpen}
+          toggleLoginOpen={props.toggleLoginOpen}
           setAuthenticated={props.setAuthenticated}
         />
       </div>

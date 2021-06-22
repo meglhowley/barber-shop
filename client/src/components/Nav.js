@@ -23,7 +23,6 @@ const Nav = (props) => {
       </NavLink>
       <div className="btns-container">
         <button className="nav-btn">Sign Up</button>
-
         <button className="nav-btn">Log In</button>
       </div>
     </div>
