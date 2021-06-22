@@ -61,8 +61,6 @@ const Barbers = () => {
 
   return (
     <div>
-      <Nav />
-      Barbers Page
       <div className="selectedBarber">
         Selected Barber: <img src={selectedBarber.bigImgUrl} />
         <h1>
