@@ -25,15 +25,19 @@ const Booking = () => {
   }, [state.selectedDate])
 
   return (
-    <div>
-      <Calendar
-        value={state.selectedDate}
-        onChange={(value) =>
-          dispatch({ type: 'setSelectedDate', payload: value })
-        }
-      />
-      <br />
-      <b>Available Appointments:</b>
+    <div className="bookings-wrapper">
+      <div className="calendar-container">
+        <Calendar
+          className="calendar"
+          value={state.selectedDate}
+          onChange={(value) =>
+            dispatch({ type: 'setSelectedDate', payload: value })
+          }
+        />
+      </div>
+      <div className="available-wrapper">
+        <b>Available Appointments:</b>
+      </div>
     </div>
   )
 }

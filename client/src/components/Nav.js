@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom'
 const Nav = () => {
   return (
     <div className="nav-bar">
+      <img className="monacle" src="https://i.imgur.com/Wq8uo6t.png" />
+      <span className="logo-text">barbershop booking buddy</span>
       <NavLink className="nav-link" to="/">
         Home
       </NavLink>
@@ -18,8 +20,10 @@ const Nav = () => {
       <NavLink className="nav-link" to="/account">
         My Account
       </NavLink>
-      <button>Log In</button>
-      <button>Register Now</button>
+      <div className="btns-container">
+        <button className="nav-btn">Sign Up</button>
+        <button className="nav-btn">Log In</button>
+      </div>
     </div>
   )
 }
