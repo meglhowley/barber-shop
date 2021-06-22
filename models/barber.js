@@ -9,31 +9,38 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Barber.hasMany(models.Appointment, {
-        foreignKey: 'barber_id'
+      //   Provider.belongsToMany(models.User, {
+      //     through: models.Appointment,
+      //     foreignKey: 'providerId',
+      //     as: 'customer'
+      //   })
+      Barber.belongsToMany(models.User, {
+        through: models.Appointment,
+        foreignKey: 'barberId',
+        as: 'customer'
       })
     }
   }
   Barber.init(
     {
       firstName: {
-        //field: 'first_name',
         type: DataTypes.STRING,
         allowNull: false
       },
       lastInitial: {
-        //field: 'last_initial',
         type: DataTypes.STRING,
         allowNull: false
       },
       bigImage: {
-        //field: 'big_image',
         type: DataTypes.STRING,
         allowNull: false
       },
       smallImage: {
-        //field: 'small_image',
         type: DataTypes.STRING,
+        allowNull: false
+      },
+      availability: {
+        type: DataTypes.JSONB,
         allowNull: false
       }
     },
@@ -45,3 +52,22 @@ module.exports = (sequelize, DataTypes) => {
   )
   return Barber
 }
+
+// static associate(models) {
+//   // define association here
+//   Provider.belongsToMany(models.User, {
+//     through: models.Appointment,
+//     foreignKey: 'providerId',
+//     as: 'customer'
+//   })
+// }
+// }
+// Provider.init(
+// {
+//   name: DataTypes.STRING,
+//   availability: DataTypes.JSONB
+// },
+// {
+//   sequelize,
+//   modelName: 'Provider',
+//   tableName: 'providers'

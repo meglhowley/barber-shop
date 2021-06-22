@@ -4,13 +4,11 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.addColumn('barbers', 'bigImage', {
       type: Sequelize.STRING,
-      allowNull: false,
-      onDelete: 'CASCADE'
+      allowNull: false
     })
     await queryInterface.addColumn('barbers', 'smallImage', {
       type: Sequelize.STRING,
-      allowNull: false,
-      onDelete: 'CASCADE'
+      allowNull: false
     })
   },
 
