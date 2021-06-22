@@ -7,11 +7,12 @@ import Booking from './pages/Booking'
 import AccountPage from './pages/AccountPage'
 import Services from './pages/Services'
 import Nav from './components/Nav'
+import LogInPage from './pages/LogInPage'
 
 const iState = {
   authenticated: false,
-  loginOpen: false,
-  registerOpen: false
+  isLoggedIn: false,
+  isRegistered: false
 }
 
 const reducer = (state, action) => {
@@ -19,9 +20,9 @@ const reducer = (state, action) => {
     case 'setAuthenticated':
       return { ...state, authenticated: action.payload }
     case 'toggleLoginOpen':
-      return { ...state, loginOpen: action.payload }
+      return { ...state, isLoggedIn: action.payload }
     case 'toggleRegisterOpen':
-      return { ...state, registerOpen: action.payload }
+      return { ...state, isRegistered: action.payload }
     default:
       return state
   }
@@ -50,7 +51,16 @@ const App = () => {
         <Route
           exact
           path="/booking"
-          component={(props) => <Booking {...props} />}
+          component={(props) => (
+            <Booking {...props} iState={iState} dispatch={dispatch} />
+          )}
+        />
+        <Route
+          exact
+          path="/loginPage"
+          component={(props) => (
+            <LogInPage {...props} iState={iState} dispatch={dispatch} />
+          )}
         />
         <Route
           exact
