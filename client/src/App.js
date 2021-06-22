@@ -34,7 +34,7 @@ const App = () => {
     <div className="App">
       <header>
         <Nav
-          toggleLogin={toggleLoginOpen}
+          toggleLoginOpen={toggleLoginOpen}
           toggleRegister={toggleRegisterOpen}
           authenticated={authenticated}
           logOut={logOut}
