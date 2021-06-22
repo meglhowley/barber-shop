@@ -37,7 +37,6 @@ const Services = () => {
 
   return (
     <div>
-      Services Page
       <div className="allServices">{servicesMapped}</div>
     </div>
   )
