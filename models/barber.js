@@ -10,31 +10,29 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Barber.hasMany(models.Appointment, {
-        foreignKey: 'barber_id',
-        onDelete: 'cascade',
-        onUpdate: 'cascade'
+        foreignKey: 'barber_id'
       })
     }
   }
   Barber.init(
     {
       firstName: {
-        field: 'first_name',
+        //field: 'first_name',
         type: DataTypes.STRING,
         allowNull: false
       },
       lastInitial: {
-        field: 'last_name',
+        //field: 'last_initial',
         type: DataTypes.STRING,
         allowNull: false
       },
       bigImage: {
-        field: 'big_image',
+        //field: 'big_image',
         type: DataTypes.STRING,
         allowNull: false
       },
       smallImage: {
-        field: 'small_image',
+        //field: 'small_image',
         type: DataTypes.STRING,
         allowNull: false
       }
