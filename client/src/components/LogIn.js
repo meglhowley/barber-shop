@@ -21,6 +21,7 @@ const LogIn = (props) => {
       console.log(res)
       localStorage.setItem('token', res.data.token)
       handleLoginForm({ email: '', password: '' })
+      props.toggleLoginOpen(false)
     } catch (error) {
       console.log(error)
     }

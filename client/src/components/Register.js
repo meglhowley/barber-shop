@@ -24,6 +24,7 @@ const Register = (props) => {
         firstName: '',
         lastName: ''
       })
+      props.toggleRegisterOpen(false)
     } catch (error) {
       console.log(error)
     }
@@ -39,57 +40,57 @@ const Register = (props) => {
   return (
     <div>
       Register Component
-      {/* <Modal isOpen={props.registerOpen}> */}
-      <form onSubmit={handleSubmit}>
-        <label>First Name</label>
-        <input
-          type="text"
-          name="firstName"
-          placeholder="Jane "
-          value={registerForm.firstName}
-          onChange={handleChange}
-          required
-        />
-        <label>Last Name</label>
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Doe"
-          value={registerForm.lastName}
-          onChange={handleChange}
-          required
-        />
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="jane@mail.com"
-          value={registerForm.email}
-          onChange={handleChange}
-          required
-        />
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Your Password"
-          value={registerForm.password}
-          onChange={handleChange}
-          required
-        />
-        <button
-          disabled={
-            !registerForm.email ||
-            !registerForm.password ||
-            !registerForm.firstName ||
-            !registerForm.lastName
-          }
-        >
-          Sign Up!
-        </button>
-      </form>
-      <button>Close</button>
-      {/* </Modal> */}
+      <Modal isOpen={props.registerOpen}>
+        <form onSubmit={handleSubmit}>
+          <label>First Name</label>
+          <input
+            type="text"
+            name="firstName"
+            placeholder="Jane "
+            value={registerForm.firstName}
+            onChange={handleChange}
+            required
+          />
+          <label>Last Name</label>
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Doe"
+            value={registerForm.lastName}
+            onChange={handleChange}
+            required
+          />
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="jane@mail.com"
+            value={registerForm.email}
+            onChange={handleChange}
+            required
+          />
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Your Password"
+            value={registerForm.password}
+            onChange={handleChange}
+            required
+          />
+          <button
+            disabled={
+              !registerForm.email ||
+              !registerForm.password ||
+              !registerForm.firstName ||
+              !registerForm.lastName
+            }
+          >
+            Sign Up!
+          </button>
+        </form>
+        <button>Close</button>
+      </Modal>
     </div>
   )
 }
