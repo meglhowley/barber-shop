@@ -8,6 +8,7 @@ import AccountPage from './pages/AccountPage'
 import Services from './pages/Services'
 import Nav from './components/Nav'
 import LogInPage from './pages/LogInPage'
+import LogIn from './components/LogIn'
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false)

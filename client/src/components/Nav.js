@@ -2,6 +2,11 @@ import { ProgressStep } from 'react-rainbow-components'
 import { NavLink } from 'react-router-dom'
 
 const Nav = (props) => {
+  const handleClick = (e) => {
+    e.preventDefault()
+    props.toggleLoginOpen(true)
+  }
+
   return (
     <div className="nav-bar">
       <img className="monacle" src="https://i.imgur.com/Wq8uo6t.png" />
@@ -23,7 +28,9 @@ const Nav = (props) => {
       </NavLink>
       <div className="btns-container">
         <button className="nav-btn">Sign Up</button>
-        <button className="nav-btn">Log In</button>
+        <button onClick={handleClick} className="nav-btn">
+          Log In
+        </button>
       </div>
     </div>
   )
