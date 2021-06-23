@@ -3,7 +3,7 @@ import axios from 'axios'
 import { BASE_URL } from '../globals'
 
 const iState = {
-  selectedBarber: null,
+  selectedBarber: [],
   barbers: []
 }
 
@@ -23,11 +23,12 @@ const Barbers = (props) => {
 
   useEffect(() => {
     findAllBarbers()
-  }, [state.selectedBarber])
+  }, [])
 
   const findAllBarbers = async () => {
     const res = await axios.get(`${BASE_URL}/barber/all`)
     dispatch({ type: 'setBarbers', payload: res.data })
+    dispatch({ type: 'setSelectedBarber', payload: res.data[0] })
   }
 
   const barbersMap = state.barbers.map((barber, idx) => (
