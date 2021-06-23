@@ -149,8 +149,10 @@ body {
   max-width: 200px;
   border-radius: 50%;
   border: 1rem solid black;
-  height: 200px;
-  width: 200px;
+  /* height: 200px;
+  width: 200px; */
+  /* max-width: 25%;
+  max-height: 25%; */
 }
 
 .selectedBarber img {
@@ -207,6 +209,7 @@ body {
 .barberPageContainer {
   max-width: 80vw;
   margin: 0 auto;
+  background-color: grey;
 }
 
 .modal {
