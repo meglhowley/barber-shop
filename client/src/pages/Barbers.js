@@ -1,5 +1,20 @@
-import Nav from '../components/Nav'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useReducer } from 'react'
+import axios from 'axios'
+import { BASE_URL } from '../globals'
+
+const iState = {
+  selectedBarber: null,
+  barbers: []
+}
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'setBarbers':
+      return { ...state, barbers: action.payload }
+    default:
+      return state
+  }
+}
 
 const allBarbers = [
   {
@@ -36,21 +51,23 @@ const allBarbers = [
   }
 ]
 
-const Barbers = () => {
-  const [selectedBarber, setSelectedBarber] = useState(allBarbers[1])
-  const [barberList, setBarberList] = useState(null)
+const Barbers = (props) => {
+  const [state, dispatch] = useReducer(reducer, iState)
 
   useEffect(() => {
-    setBarberList(allBarbers)
-    setSelectedBarber(allBarbers[3])
-    console.log(selectedBarber)
-    console.log(barberList)
-  }, [selectedBarber])
+    findAllBarbers()
+    console.log(state.barbers)
+  }, [])
 
-  const barbersMap = allBarbers.map((barber, idx) => (
+  const findAllBarbers = async () => {
+    const res = await axios.get(`${BASE_URL}/barber/all`)
+    dispatch({ type: 'setBarbers', payload: res.data })
+  }
+
+  const barbersMap = state.barbers.map((barber, idx) => (
     <div key={idx}>
       {/* <p>Barber #: {idx}</p> */}
-      <img src={barber.smallImgUrl} />
+      <img src={barber.smallImage} />
       <h2>
         {barber.firstName} {barber.lastInitial}
       </h2>
@@ -61,12 +78,12 @@ const Barbers = () => {
 
   return (
     <div className="barberPageContainer">
-      <div className="selectedBarber">
+      {/* <div className="selectedBarber">
         <img src={selectedBarber.bigImgUrl} />
         <h1>
           {selectedBarber.firstName} {selectedBarber.lastInitial}
         </h1>
-      </div>
+      </div> */}
       <div className="allBarbers">{barbersMap}</div>
     </div>
   )
