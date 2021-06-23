@@ -1,74 +1,65 @@
-const { Review } = require('../models')
+const { Appointment } = require('../models')
 
-const CreateReview = async (req, res) => {
+const CreateAppointment = async (req, res) => {
   try {
-    const { userId, star, content } = req.body
+    const { barberId, userId, serviceId, date, duration } = req.body
 
-    let reviewBody = {
+    let apptBody = {
+      barberId,
       userId,
-      star,
-      content
+      serviceId,
+      date,
+      duration
     }
-    const review = await Review.create(reviewBody)
-    res.send(review)
+    apptBody.userId = parseInt(reviewBody.userId)
+    apptBody.barberId = parseInt(reviewBody.barberId)
+    apptBody.serviceId = parseInt(reviewBody.serviceId)
+    const appt = await Appointment.create(apptBody)
+    res.send(appt)
   } catch (error) {
     throw error
   }
 }
-const DeleteReview = async (req, res) => {
+const DeleteAppointment = async (req, res) => {
   try {
-    let reviewId = parseInt(req.params.review_id)
-    await Review.destroy({ where: { id: reviewId } })
-    res.send({ message: `Deleted review with an id of ${reviewId}` })
+    let apptId = parseInt(req.params.appt_id)
+    await Appointment.destroy({ where: { id: apptId } })
+    res.send({ message: `Deleted appointment with an id of ${apptId}` })
   } catch (error) {
     throw error
   }
 }
-const FindAllReviews = async (req, res) => {
+const FindAllAppointments = async (req, res) => {
   try {
-    let reviews = await Review.findAll({})
-    res.send(reviews)
+    let appts = await Appointment.findAll({})
+    res.send(appts)
   } catch (error) {
     throw error
   }
 }
-const FindReviewById = async (req, res) => {
+const FindAppointmentById = async (req, res) => {
   try {
-    let reviewId = parseInt(req.params.review_id)
-    const review = await Review.findByPk(reviewId)
-    res.send(review)
+    let apptId = parseInt(req.params.appt_id)
+    const appt = await Appointment.findByPk(apptId)
+    res.send(appt)
   } catch (error) {
     throw error
   }
 }
-const FindReviewByUserId = async (req, res) => {
+const FindAppointmentByUserId = async (req, res) => {
   try {
     let userId = parseInt(req.params.user_id)
-    const review = await Review.findAll({ where: { userId: userId } })
-    res.send(review)
-  } catch (error) {
-    throw error
-  }
-}
-
-const UpdateReview = async (req, res) => {
-  try {
-    let reviewId = parseInt(req.params.review_id)
-    let review = await Review.update(req.body, {
-      where: { id: reviewId },
-      returning: true
-    })
-    res.send(review)
+    const appt = await Appointment.findAll({ where: { userId: userId } })
+    res.send(appt)
   } catch (error) {
     throw error
   }
 }
 
 module.exports = {
-  CreateReview,
-  DeleteReview,
-  FindAllReviews,
-  FindReviewById,
-  FindReviewByUserId,
-  UpdateReview
+  CreateAppointment,
+  DeleteAppointment,
+  FindAllAppointments,
+  FindAppointmentById,
+  FindAppointmentByUserId
 }
