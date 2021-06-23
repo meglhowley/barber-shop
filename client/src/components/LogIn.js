@@ -4,30 +4,6 @@ import axios from 'axios'
 import { BASE_URL } from '../globals'
 
 const LogIn = (props) => {
-  const [loginForm, handleLoginForm] = useState({
-    email: '',
-    password: ''
-  })
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    handleLoginForm({ ...loginForm, [name]: value })
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      const res = await axios.post(`${BASE_URL}/auth/login`, loginForm)
-      console.log(res)
-      localStorage.setItem('token', res.data.token)
-      handleLoginForm({ email: '', password: '' })
-      props.toggleLoginOpen(false)
-      props.setAuthenticated(true)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   return (
     <div>
       <Modal
@@ -35,14 +11,14 @@ const LogIn = (props) => {
         isOpen={props.loginOpen}
         onRequestClose={() => props.toggleLoginOpen(false)}
       >
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={props.handleSubmit}>
           <label>Email</label>
           <input
             type="email"
             name="email"
             placeholder="jane@mail.com"
-            value={loginForm.email}
-            onChange={handleChange}
+            value={props.loginForm.email}
+            onChange={props.handleChange}
             required
           />
           <br />
@@ -51,8 +27,8 @@ const LogIn = (props) => {
             type="password"
             name="password"
             placeholder="Your Password"
-            value={loginForm.password}
-            onChange={handleChange}
+            value={props.loginForm.password}
+            onChange={props.handleChange}
             required
           />
           <br />

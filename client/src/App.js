@@ -9,11 +9,18 @@ import Services from './pages/Services'
 import Nav from './components/Nav'
 import LogIn from './components/LogIn'
 import Register from './components/Register'
+import axios from 'axios'
+import { BASE_URL } from './globals'
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
   const [loginOpen, toggleLoginOpen] = useState(false)
   const [registerOpen, toggleRegisterOpen] = useState(false)
+  const [loginForm, handleLoginForm] = useState({
+    email: '',
+    password: ''
+  })
+  const [user_id, setUserId] = useState(null)
 
   const logOut = () => {
     setAuthenticated(false)
@@ -27,9 +34,28 @@ const App = () => {
     }
   }
 
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    handleLoginForm({ ...loginForm, [name]: value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const res = await axios.post(`${BASE_URL}/auth/login`, loginForm)
+      console.log(res)
+      localStorage.setItem('token', res.data.token)
+      handleLoginForm({ email: '', password: '' })
+      toggleLoginOpen(false)
+      setAuthenticated(true)
+      setUserId(res.data.user.id)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     getToken()
-    console.log(authenticated)
   }, [])
 
   return (
@@ -51,6 +77,9 @@ const App = () => {
           loginOpen={loginOpen}
           toggleLoginOpen={toggleLoginOpen}
           setAuthenticated={setAuthenticated}
+          loginForm={loginForm}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
         />
         <Register
           registerOpen={registerOpen}

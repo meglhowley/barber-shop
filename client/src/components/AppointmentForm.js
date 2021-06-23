@@ -40,6 +40,9 @@ const AppointmentForm = (props) => {
               label="Select Your Service"
               variant="header"
             />
+            {props.services.map((service, index) => (
+              <Option name={`option ${index}`} label={`${service.name}`} />
+            ))}
           </Picklist>
         </form>
       </Modal>

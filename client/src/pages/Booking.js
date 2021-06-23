@@ -30,6 +30,8 @@ const reducer = (state, action) => {
       return { ...state, services: action.payload }
     case 'toggleOpenApptForm':
       return { ...state, openApptForm: action.payload }
+    case 'handleLoginForm':
+      return { ...state, loginForm: action.payload }
     default:
       return state
   }
