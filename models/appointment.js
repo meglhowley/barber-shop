@@ -51,14 +51,15 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       date: {
-        type: DataTypes.DATE,
-        get: function (value) {
-          let currentDate = this.getDataValue(value)
-          console.log(currentDate)
-          return Moment(currentDate).utcOffset(-4)
-        }
+        type: DataTypes.STRING
+        //type: DataTypes.DATE,
+        // get: function (value) {
+        //   let currentDate = this.getDataValue(value)
+        //   console.log(currentDate)
+        //   return Moment(currentDate).utcOffset(-4)
+        // }
       },
-      start: DataTypes.TIME,
+      //start: DataTypes.TIME,
       duration: DataTypes.INTEGER
     },
     {
