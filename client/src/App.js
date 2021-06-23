@@ -57,7 +57,8 @@ const App = () => {
 
   useEffect(() => {
     getToken()
-  }, [])
+    console.log(user_id)
+  }, [user_id])
 
   return (
     <div className="App">
@@ -98,7 +99,7 @@ const App = () => {
         <Route
           exact
           path="/booking"
-          component={(props) => <Booking {...props} />}
+          component={(props) => <Booking {...props} user_id={user_id} />}
         />
         <Route
           exact

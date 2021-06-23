@@ -1,14 +1,16 @@
 import { Modal, Option, Picklist } from 'react-rainbow-components'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { BASE_URL } from '../globals'
 
 const AppointmentForm = (props) => {
-  const [selectedBarber, setSelectedBarber] = useState(null)
-  const [selectedService, setSelectedService] = useState(null)
+  const [selectedBarber, setSelectedBarber] = useState({
+    name: 'Select your barber',
+    label: 'Select your barber'
+  })
+  const [selectedService, setSelectedService] = useState([])
 
-  useEffect(() => {
-    console.log(props)
-    console.log(props.openApptForm)
-  }, [])
+  useEffect(() => {}, [selectedBarber])
 
   return (
     <div>
@@ -21,13 +23,16 @@ const AppointmentForm = (props) => {
         <h1>Book An Appointment</h1>
         <form>
           <Picklist
-            onChange={(value) => setSelectedBarber({ value })}
+            onChange={(selectedBarber) => setSelectedBarber({ selectedBarber })}
             value={selectedBarber}
             label="Select Your Barber"
           >
             <Option name="header" label="Select Your Barber" variant="header" />
             {props.barbers.map((barber, index) => (
-              <Option name={`option ${index}`} label={`${barber.firstName}`} />
+              <Option
+                name={`${barber.firstName}`}
+                label={`${barber.firstName}`}
+              />
             ))}
           </Picklist>
           <Picklist
