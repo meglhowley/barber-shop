@@ -13,8 +13,6 @@ const Nav = (props) => {
     props.toggleRegisterOpen(true)
   }
 
-  console.log(props)
-
   return (
     <div className="nav-bar">
       <img className="monacle" src="https://i.imgur.com/Wq8uo6t.png" />
