@@ -1,4 +1,5 @@
 const { Appointment } = require('../models')
+const { Op } = require('sequelize')
 
 const CreateAppointment = async (req, res) => {
   try {
@@ -11,9 +12,9 @@ const CreateAppointment = async (req, res) => {
       date,
       duration
     }
-    apptBody.userId = parseInt(reviewBody.userId)
-    apptBody.barberId = parseInt(reviewBody.barberId)
-    apptBody.serviceId = parseInt(reviewBody.serviceId)
+    // apptBody.userId = parseInt(reviewBody.userId)
+    // apptBody.barberId = parseInt(reviewBody.barberId)
+    // apptBody.serviceId = parseInt(reviewBody.serviceId)
     const appt = await Appointment.create(apptBody)
     res.send(appt)
   } catch (error) {
