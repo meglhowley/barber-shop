@@ -5,8 +5,8 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     // let startTime = moment().hour(8).utcOffset(-4).format('HH:mm')
     // let endTime = moment().hour(8).utcOffset(-4).format('HH:mm')
-    let startTime = '08:00:00'
-    let endTime = '17:00:00'
+    let startTime = 8
+    let endTime = 17
     const times = { startTime: startTime, endTime: endTime }
     // const times = [...Array(7)].reduce((ac, next) => {
     //   let avail = {
