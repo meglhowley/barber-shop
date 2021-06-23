@@ -40,47 +40,56 @@ const Register = (props) => {
   return (
     <div>
       <Modal
+        className="modal"
         isOpen={props.registerOpen}
         onRequestClose={() => props.toggleRegisterOpen(false)}
       >
+        <div className="prompt">
+          <h1>Sign Up</h1>
+          <p>
+            Thanks for joining us! Please fill out the required information
+            below.
+          </p>
+        </div>
         <form onSubmit={handleSubmit}>
-          <label>First Name</label>
           <input
             type="text"
             name="firstName"
-            placeholder="Jane "
+            placeholder="First Name"
             value={registerForm.firstName}
             onChange={handleChange}
             required
           />
-          <label>Last Name</label>
+          <br />
           <input
             type="text"
             name="lastName"
-            placeholder="Doe"
+            placeholder="Last Name"
             value={registerForm.lastName}
             onChange={handleChange}
             required
           />
-          <label>Email</label>
+          <br />
           <input
             type="email"
             name="email"
-            placeholder="jane@mail.com"
+            placeholder="Email Address"
             value={registerForm.email}
             onChange={handleChange}
             required
           />
-          <label>Password</label>
+          <br />
           <input
             type="password"
             name="password"
-            placeholder="Your Password"
+            placeholder="Create A Password"
             value={registerForm.password}
             onChange={handleChange}
             required
           />
+          <br />
           <button
+            className="register-btn"
             disabled={
               !registerForm.email ||
               !registerForm.password ||
@@ -88,10 +97,9 @@ const Register = (props) => {
               !registerForm.lastName
             }
           >
-            Sign Up!
+            CREATE ACCOUNT
           </button>
         </form>
-        <button>Close</button>
       </Modal>
     </div>
   )

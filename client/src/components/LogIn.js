@@ -22,18 +22,16 @@ const LogIn = (props) => {
       localStorage.setItem('token', res.data.token)
       handleLoginForm({ email: '', password: '' })
       props.toggleLoginOpen(false)
+      props.setAuthenticated(true)
     } catch (error) {
       console.log(error)
     }
   }
 
-  useEffect(() => {
-    console.log(props.loginOpen)
-  }, [loginForm])
-
   return (
     <div>
       <Modal
+        className="modal login"
         isOpen={props.loginOpen}
         onRequestClose={() => props.toggleLoginOpen(false)}
       >
@@ -47,6 +45,7 @@ const LogIn = (props) => {
             onChange={handleChange}
             required
           />
+          <br />
           <label>Password</label>
           <input
             type="password"
@@ -56,7 +55,8 @@ const LogIn = (props) => {
             onChange={handleChange}
             required
           />
-          <button>LogIn</button>
+          <br />
+          <button className="login-btn">LOG IN</button>
         </form>
       </Modal>
     </div>

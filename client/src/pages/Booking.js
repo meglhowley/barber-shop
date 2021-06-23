@@ -24,7 +24,6 @@ const Booking = (props) => {
   useEffect(() => {
     console.log(state.selectedDate)
   }, [state.selectedDate])
-  console.log(props)
   return (
     <div className="bookings-wrapper">
       <div className="calendar-container">
@@ -39,13 +38,6 @@ const Booking = (props) => {
       <div className="available-wrapper">
         <b>Available Appointments:</b>
       </div>
-      {/* <div>
-        <LogIn
-          loginOpen={props.loginOpen}
-          toggleLogin={props.toggleLogin}
-          toggleAuthenticated={props.toggleAuthenticated}
-        />
-      </div> */}
     </div>
   )
 }
