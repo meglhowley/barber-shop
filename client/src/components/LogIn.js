@@ -22,14 +22,11 @@ const LogIn = (props) => {
       localStorage.setItem('token', res.data.token)
       handleLoginForm({ email: '', password: '' })
       props.toggleLoginOpen(false)
+      props.setAuthenticated(true)
     } catch (error) {
       console.log(error)
     }
   }
-
-  useEffect(() => {
-    console.log(props.loginOpen)
-  }, [loginForm])
 
   return (
     <div>
