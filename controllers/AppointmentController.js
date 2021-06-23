@@ -55,11 +55,26 @@ const FindAppointmentByUserId = async (req, res) => {
     throw error
   }
 }
+const FindAppointmentByDate = async (req, res) => {
+  try {
+    let date = req.params.appt_date
+    let compstring = `${date}%`
+    const appts = await Appointment.findAll({
+      where: {
+        date: { [Op.like]: compstring }
+      }
+    })
+    res.send(appts)
+  } catch (error) {
+    throw error
+  }
+}
 
 module.exports = {
   CreateAppointment,
   DeleteAppointment,
   FindAllAppointments,
   FindAppointmentById,
-  FindAppointmentByUserId
+  FindAppointmentByUserId,
+  FindAppointmentByDate
 }
