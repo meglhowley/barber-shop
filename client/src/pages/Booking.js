@@ -7,12 +7,15 @@ import Nav from '../components/Nav'
 import LogIn from '../components/LogIn'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
-import AppointmentCard from '../components/AppointmentCard'
 import moment from 'moment'
+import AppointmentForm from '../components/AppointmentForm'
 
 const iState = {
   selectedDate: new Date(),
-  barbers: []
+  barbers: [],
+  timeSlots: [],
+  services: [],
+  openApptForm: true
 }
 
 const reducer = (state, action) => {
@@ -21,6 +24,12 @@ const reducer = (state, action) => {
       return { ...state, selectedDate: action.payload }
     case 'setBarbers':
       return { ...state, barbers: action.payload }
+    case 'setTimeSlots':
+      return { ...state, timeSlots: action.payload }
+    case 'setServices':
+      return { ...state, services: action.payload }
+    case 'toggleOpenApptForm':
+      return { ...state, openApptForm: action.payload }
     default:
       return state
   }
@@ -28,23 +37,21 @@ const reducer = (state, action) => {
 
 const Booking = (props) => {
   const [state, dispatch] = useReducer(reducer, iState)
-  // useEffect(() => {
-  //   // console.log(state.selectedDate)
-  // }, [state.selectedDate])
 
   const findAllBarbers = async () => {
     const res = await axios.get(`${BASE_URL}/barber/all`)
-    // console.log(res.data[1].availability)
     dispatch({ type: 'setBarbers', payload: res.data })
+  }
+
+  const findAllServices = async () => {
+    const res = await axios.get(`${BASE_URL}/services/all`)
+    dispatch({ type: 'setServices', payload: res.data })
   }
 
   useEffect(() => {
     findAllBarbers()
-    // barberList()
+    findAllServices()
   }, [])
-
-  // const startTime = parseInt(state.barbers[i].availability.startTime)
-  // const endTime = parseInt(state.barbers[i].availability.endTime)
 
   const barberList = (value) => {
     let start = 8
@@ -53,9 +60,32 @@ const Booking = (props) => {
       let date = moment(value).format('YYYY-MM-DD')
       return moment(`${date} ${time}`).format('YYYY-MM-DDThh:mm')
     })
-    console.log(availTimes)
+    dispatch({ type: 'setTimeSlots', payload: availTimes })
     dispatch({ type: 'setSelectedDate', payload: value })
   }
+
+  const timeSlotMap = state.timeSlots.map((timeslot, index) => {
+    const timeOnly = timeslot.slice(11)
+    return (
+      <div>
+        <div
+          onClick={() =>
+            dispatch({ type: 'toggleOpenApptForm', payload: true })
+          }
+          className="appt-card"
+        >
+          {timeOnly}
+        </div>
+        <AppointmentForm
+          apptTime={timeOnly}
+          barbers={state.barbers}
+          services={state.services}
+          openApptForm={state.openApptForm}
+          dispatch={dispatch}
+        />
+      </div>
+    )
+  })
 
   return (
     <div className="bookings-wrapper">
@@ -65,10 +95,10 @@ const Booking = (props) => {
           value={state.selectedDate}
           onChange={(value) => barberList(value)}
         />
-        <DateTimePicker />
       </div>
       <div className="available-wrapper">
         <b>Available Appointments:</b>
+        {timeSlotMap}
       </div>
     </div>
   )
