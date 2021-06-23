@@ -15,7 +15,7 @@ const iState = {
   barbers: [],
   timeSlots: [],
   services: [],
-  openApptForm: true
+  openApptForm: false
 }
 
 const reducer = (state, action) => {
@@ -84,6 +84,7 @@ const Booking = (props) => {
           services={state.services}
           openApptForm={state.openApptForm}
           dispatch={dispatch}
+          user_id={props.user_id}
         />
       </div>
     )
