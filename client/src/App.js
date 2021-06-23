@@ -29,16 +29,23 @@ const App = () => {
 
   useEffect(() => {
     getToken()
+    console.log(authenticated)
   }, [])
 
   return (
     <div className="App">
       <header>
-        <Nav
-          toggleLoginOpen={toggleLoginOpen}
-          toggleRegisterOpen={toggleRegisterOpen}
-          authenticated={authenticated}
-          logOut={logOut}
+        <Route
+          path="/"
+          component={(props) => (
+            <Nav
+              {...props}
+              toggleLoginOpen={toggleLoginOpen}
+              toggleRegisterOpen={toggleRegisterOpen}
+              authenticated={authenticated}
+              logOut={logOut}
+            />
+          )}
         />
         <LogIn
           loginOpen={loginOpen}

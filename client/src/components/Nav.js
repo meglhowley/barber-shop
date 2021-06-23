@@ -1,5 +1,6 @@
 import { ProgressStep } from 'react-rainbow-components'
 import { NavLink } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const Nav = (props) => {
   const handleClickLogIn = (e) => {
@@ -11,6 +12,8 @@ const Nav = (props) => {
     e.preventDefault()
     props.toggleRegisterOpen(true)
   }
+
+  console.log(props)
 
   return (
     <div className="nav-bar">
@@ -28,15 +31,22 @@ const Nav = (props) => {
       <NavLink className="nav-link" to="/booking">
         Book an Appointment
       </NavLink>
-      <NavLink className="nav-link" to="/account">
-        My Account
-      </NavLink>
       <div className="btns-container">
-        <button onClick={handleClickRegister} className="nav-btn">
-          Sign Up
+        <button
+          onClick={
+            !props.authenticated
+              ? handleClickRegister
+              : () => props.history.push('/account')
+          }
+          className="nav-btn"
+        >
+          {!props.authenticated ? 'Sign Up' : 'My Account'}
         </button>
-        <button onClick={handleClickLogIn} className="nav-btn">
-          Log In
+        <button
+          onClick={!props.authenticated ? handleClickLogIn : props.logOut}
+          className="nav-btn"
+        >
+          {!props.authenticated ? 'Log In' : 'Log Out'}
         </button>
       </div>
     </div>
