@@ -1,4 +1,4 @@
-const { Review } = require('../models')
+const { Review, User } = require('../models')
 
 const CreateReview = async (req, res) => {
   try {
@@ -26,7 +26,9 @@ const DeleteReview = async (req, res) => {
 }
 const FindAllReviews = async (req, res) => {
   try {
-    let reviews = await Review.findAll({})
+    let reviews = await Review.findAll({
+      include: [{ model: User, attributes: ['firstName', 'lastName'] }]
+    })
     res.send(reviews)
   } catch (error) {
     throw error

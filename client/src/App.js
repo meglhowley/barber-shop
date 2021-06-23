@@ -11,6 +11,7 @@ import LogIn from './components/LogIn'
 import Register from './components/Register'
 import axios from 'axios'
 import { BASE_URL } from './globals'
+import Reviews from './pages/Reviews'
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
@@ -56,7 +57,8 @@ const App = () => {
 
   useEffect(() => {
     getToken()
-  }, [])
+    console.log(user_id)
+  }, [user_id])
 
   return (
     <div className="App">
@@ -97,7 +99,7 @@ const App = () => {
         <Route
           exact
           path="/booking"
-          component={(props) => <Booking {...props} />}
+          component={(props) => <Booking {...props} user_id={user_id} />}
         />
         <Route
           exact
@@ -108,6 +110,11 @@ const App = () => {
           exact
           path="/account"
           component={(props) => <AccountPage {...props} />}
+        />
+        <Route
+          exact
+          path="/reviews"
+          component={(props) => <Reviews {...props} />}
         />
       </Switch>
     </div>
