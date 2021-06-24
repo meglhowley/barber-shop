@@ -27,6 +27,7 @@ const Register = (props) => {
       })
       props.toggleRegisterOpen(false)
       handleErrorMessage('')
+      props.toggleLoginOpen(true)
     } catch (error) {
       console.log(error.response)
       handleErrorMessage(error.response.data.msg)
