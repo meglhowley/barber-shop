@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       userId: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
         onDelete: 'CASCADE',
         references: {
           model: 'users',
@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
         //   return Moment(currentDate).utcOffset(-4)
         // }
       },
-      //start: DataTypes.TIME,
+      startTime: DataTypes.STRING,
       duration: DataTypes.INTEGER
     },
     {
