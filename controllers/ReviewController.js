@@ -35,7 +35,7 @@ const FindAllReviews = async (req, res) => {
   try {
     let reviews = await Review.findAll({
       include: [{ model: User, attributes: ['firstName', 'lastName'] }],
-      order: [['updatedAt', 'DESC']]
+      order: [['createdAt', 'DESC']]
     })
     res.send(reviews)
   } catch (error) {
@@ -54,7 +54,10 @@ const FindReviewById = async (req, res) => {
 const FindReviewByUserId = async (req, res) => {
   try {
     let userId = parseInt(res.locals.payload.id)
-    const review = await Review.findAll({ where: { userId: userId } })
+    const review = await Review.findAll({
+      where: { userId: userId },
+      order: [['id', 'DESC']]
+    })
     res.send(review)
   } catch (error) {
     throw error

@@ -55,7 +55,10 @@ const FindUpcomingAppointmentByUserId = async (req, res) => {
         [Op.and]: [{ userId: userId }, { date: { [Op.gte]: today } }]
       },
       include: [{ model: Services }, { model: Barber }],
-      order: [['date', 'ASC']]
+      order: [
+        ['date', 'ASC'],
+        ['startTime', 'ASC']
+      ]
     })
     res.send(appt)
   } catch (error) {
