@@ -18,13 +18,10 @@ const comparePassword = async (storedPassword, password) => {
   return passwordMatch
 }
 const createToken = (payload) => {
-  //third arg = options
   let token = jwt.sign(payload, APP_SECRET)
   return token
 }
 const verifyToken = (req, res, next) => {
-  //allows us to essentially pass props in express
-  //whatever is in that state only exists during the request - secure
   const { token } = res.locals
   try {
     let payload = jwt.verify(token, APP_SECRET)
@@ -35,7 +32,6 @@ const verifyToken = (req, res, next) => {
     }
     res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
   } catch (error) {
-    //put a console.log here when developing to identify error
     res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
   }
 }
@@ -48,7 +44,6 @@ const stripToken = (req, res, next) => {
       return next()
     }
   } catch (error) {
-    //throw console.log here for development testing
     res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
   }
 }
