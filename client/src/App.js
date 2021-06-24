@@ -59,6 +59,11 @@ const App = () => {
 
   useEffect(() => {
     getToken()
+  }, [])
+
+  useEffect(() => {
+    console.log(authenticated)
+    console.log(userId)
   }, [userId])
 
   return (

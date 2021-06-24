@@ -45,7 +45,6 @@ const AppointmentForm = (props) => {
     e.preventDefault()
     const res = await axios.post(`${BASE_URL}/appointment/create`, {
       barberId: barberId,
-      userId: props.userId,
       serviceId: serviceId,
       date: props.selectedDate.toDateString(),
       duration: 60
