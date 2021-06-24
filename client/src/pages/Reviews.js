@@ -2,6 +2,7 @@ import Nav from '../components/Nav'
 import { useEffect, useState, useReducer } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
+import ReviewForm from '../components/ReviewForm'
 
 const iState = {
   reviews: [],
@@ -51,6 +52,9 @@ const Reviews = (props) => {
         >
           Add a Review
         </button>
+        {state.newReview ? (
+          <ReviewForm dispatch={dispatch} state={state} />
+        ) : null}
       </div>
       <div className="all-reviews">{mappedReviews}</div>
     </div>
