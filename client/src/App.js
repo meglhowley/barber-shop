@@ -21,10 +21,11 @@ const App = () => {
     email: '',
     password: ''
   })
-  const [user_id, setUserId] = useState(null)
+  const [userId, setUserId] = useState(null)
 
   const logOut = () => {
     setAuthenticated(false)
+    setUserId(null)
     localStorage.clear()
   }
 
@@ -57,8 +58,7 @@ const App = () => {
 
   useEffect(() => {
     getToken()
-    console.log(user_id)
-  }, [user_id])
+  }, [userId])
 
   return (
     <div className="App">
@@ -99,7 +99,7 @@ const App = () => {
         <Route
           exact
           path="/booking"
-          component={(props) => <Booking {...props} user_id={user_id} />}
+          component={(props) => <Booking {...props} userId={userId} />}
         />
         <Route
           exact
