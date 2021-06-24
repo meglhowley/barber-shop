@@ -2,12 +2,14 @@ import { useEffect, useReducer, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
 import moment from 'moment'
+import EditableReviewCard from '../components/EditableReviewCard'
 
 const iState = {
   upcomingAppointments: [],
   pastAppointments: [],
   apptId: null,
-  forceUpdate: []
+  forceUpdate: [],
+  userReviews: []
 }
 const reducer = (state, action) => {
   switch (action.type) {
@@ -19,6 +21,8 @@ const reducer = (state, action) => {
       return { ...state, apptId: action.payload }
     case 'setForceUpdate':
       return { ...state, forceUpdate: action.payload }
+    case 'setUserReviews':
+      return { ...state, userReviews: action.payload }
     default:
       return state
   }
@@ -31,6 +35,7 @@ const AccountPage = (props) => {
   useEffect(() => {
     FindAllUpcomingAppointments()
     FindAllPastAppointments()
+    FindAllReviewsForUser()
   }, [state.forceUpdate])
 
   const FindAllUpcomingAppointments = async () => {
@@ -69,12 +74,26 @@ const AccountPage = (props) => {
     </div>
   ))
 
+  const FindAllReviewsForUser = async () => {
+    const res = await axios.get(`${BASE_URL}/user`)
+    console.log(res)
+    console.log(res.data)
+    dispatch({ type: 'setUserReviews', payload: res.data })
+    console.log(res.data)
+  }
+
+  const userReviewsMap = state.userReviews.map((review, idx) => {
+    return <EditableReviewCard key={idx} review={review} />
+  })
+
   return (
     <div>
       <h2>Upcoming Appointments</h2>
       <div className="upcoming-appointments">{mappedAppointments}</div>
       <h2>Past Appointments</h2>
       <div className="past-appointments">{pastAppointments}</div>
+
+      <div>user reviews{userReviewsMap}</div>
     </div>
   )
 }
