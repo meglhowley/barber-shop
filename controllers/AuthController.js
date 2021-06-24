@@ -9,7 +9,7 @@ const Login = async (req, res) => {
     })
     if (
       user &&
-      (await middleware.comparePassword(user.passwordDigest, req.body.password)) //may need to change to password_digest
+      (await middleware.comparePassword(user.passwordDigest, req.body.password))
     ) {
       let payload = {
         id: user.id,

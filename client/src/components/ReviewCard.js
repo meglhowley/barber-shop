@@ -1,14 +1,13 @@
 import { Rating } from 'react-rainbow-components'
+import moment from 'moment'
 
 const ReviewCard = (props) => {
   return (
     <div className="reviewCard">
-      Review Card
-      <h2>random h2</h2>
-      <h2>{`${props.review.User.firstName} name ${props.review.User.lastName[0]}.`}</h2>
-      <h3>{props.review.createdAt}</h3>
       <Rating value={props.review.star} readOnly />
       <h3>{props.review.content}</h3>
+      <h4>{`${props.review.User.firstName} ${props.review.User.lastName[0]}.`}</h4>
+      <h4>{moment(props.review.createdAt).fromNow()}</h4>
     </div>
   )
 }
