@@ -45,17 +45,24 @@ const Reviews = (props) => {
     <ReviewCard key={i} review={review} />
   ))
 
+  console.log(props.authenticated)
+
   return (
     <div>
       <h2>Reviews Page</h2>
       <div>
-        <button
-          onClick={() => {
-            dispatch({ type: 'toggleNewReview', payload: !state.newReview })
-          }}
-        >
-          Add a Review
-        </button>
+        {props.authenticated ? (
+          <button
+            onClick={() => {
+              dispatch({ type: 'toggleNewReview', payload: !state.newReview })
+            }}
+          >
+            Add a Review
+          </button>
+        ) : (
+          <div></div>
+        )}
+
         {state.newReview ? (
           <ReviewForm dispatch={dispatch} state={state} userId={props.userId} />
         ) : null}
