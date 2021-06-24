@@ -21,12 +21,13 @@ const reducer = (state, action) => {
 
 const Reviews = (props) => {
   const [state, dispatch] = useReducer(reducer, iState)
-  console.log(props)
+  // console.log(props)
 
   useEffect(() => {
     FindAllReviews()
-    console.log(state)
-  }, [state.newReview])
+
+    // console.log(state)
+  }, [])
 
   const FindAllReviews = async () => {
     const res = await axios.get(`${BASE_URL}/reviews/all`)
@@ -36,15 +37,14 @@ const Reviews = (props) => {
 
   const createNewReview = async () => {}
 
+  console.log(state.reviews)
+
+  const createMappedReviews = () => {}
+
   const mappedReviews = state.reviews.map((review, i) => (
-    // <div key={i}>
-    //   <h2>{`${review.User.firstName} ${review.User.lastName[0]}.`}</h2>
-    //   <p>{review.star}</p>
-    //   <h3>{review.content}</h3>
-    //   <h3>{review.createdAt}</h3>
-    // </div>
     <ReviewCard key={i} review={review} />
   ))
+
   return (
     <div>
       <h2>Reviews Page</h2>
@@ -57,11 +57,7 @@ const Reviews = (props) => {
           Add a Review
         </button>
         {state.newReview ? (
-          <ReviewForm
-            dispatch={dispatch}
-            iState={state}
-            userId={props.userId}
-          />
+          <ReviewForm dispatch={dispatch} state={state} userId={props.userId} />
         ) : null}
       </div>
       <div className="all-reviews">{mappedReviews}</div>
