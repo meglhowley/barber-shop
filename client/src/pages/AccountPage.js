@@ -1,11 +1,13 @@
-import { useEffect, useReducer } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
 import moment from 'moment'
 
 const iState = {
   upcomingAppointments: [],
-  pastAppointments: []
+  pastAppointments: [],
+  apptId: null,
+  forceUpdate: []
 }
 const reducer = (state, action) => {
   switch (action.type) {
@@ -13,6 +15,10 @@ const reducer = (state, action) => {
       return { ...state, upcomingAppointments: action.payload }
     case 'setPastAppointments':
       return { ...state, pastAppointments: action.payload }
+    case 'setApptId':
+      return { ...state, apptId: action.payload }
+    case 'setForceUpdate':
+      return { ...state, forceUpdate: action.payload }
     default:
       return state
   }
@@ -25,7 +31,7 @@ const AccountPage = (props) => {
   useEffect(() => {
     FindAllUpcomingAppointments()
     FindAllPastAppointments()
-  }, [])
+  }, [state.forceUpdate])
 
   const FindAllUpcomingAppointments = async () => {
     const res = await axios.get(
@@ -43,15 +49,21 @@ const AccountPage = (props) => {
     dispatch({ type: 'setPastAppointments', payload: res.data })
   }
 
+  const handleDelete = async (apptId) => {
+    const res = await axios.delete(`${BASE_URL}/appointment/${apptId}`)
+    dispatch({ type: 'setForceUpdate', payload: res })
+  }
+
   const mappedAppointments = state.upcomingAppointments.map((appt, i) => (
-    <div key={i}>
+    <div className="appointment-card" key={i}>
+      <button onClick={() => handleDelete(appt.id)}>Cancel Appointment</button>
       <h3>{appt.date}</h3>
       <h3>{appt.Service.name}</h3>
       <h3>{`with ${appt.Barber.firstName} ${appt.Barber.lastInitial}.`}</h3>
     </div>
   ))
   const pastAppointments = state.pastAppointments.map((appt, i) => (
-    <div key={i}>
+    <div className="appointment-card" key={i}>
       <h3>{appt.date}</h3>
       <h3>{appt.Service.name}</h3>
       <h3>{`with ${appt.Barber.firstName} ${appt.Barber.lastInitial}.`}</h3>

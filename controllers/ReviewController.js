@@ -10,10 +10,14 @@ const CreateReview = async (req, res) => {
       content
     }
     const review = await Review.create(reviewBody)
-    const user = await User.findAll({ where: { userId: userId } })
-    review.firstName = user.firstName
-    review.lastName = user.lastName
-    res.send(review)
+    const user = await User.findAll({
+      where: { id: reviewBody.userId }
+    })
+    let newReview = {
+      ...review.dataValues,
+      User: { firstName: user[0].firstName, lastName: user[0].lastName }
+    }
+    res.send(newReview)
   } catch (error) {
     throw error
   }
@@ -32,6 +36,7 @@ const FindAllReviews = async (req, res) => {
     let reviews = await Review.findAll({
       include: [{ model: User, attributes: ['firstName', 'lastName'] }]
     })
+    console.log(reviews)
     res.send(reviews)
   } catch (error) {
     throw error
