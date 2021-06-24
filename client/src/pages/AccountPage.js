@@ -82,8 +82,19 @@ const AccountPage = (props) => {
     console.log(res.data)
   }
 
+  const handleUserReviewDelete = async (review_id) => {
+    const res = await axios.delete(`${BASE_URL}/reviews/${review_id}`)
+    dispatch({ type: 'setForceUpdate', payload: res })
+  }
+
   const userReviewsMap = state.userReviews.map((review, idx) => {
-    return <EditableReviewCard key={idx} review={review} />
+    return (
+      <EditableReviewCard
+        key={idx}
+        review={review}
+        handleUserReviewDelete={handleUserReviewDelete}
+      />
+    )
   })
 
   return (

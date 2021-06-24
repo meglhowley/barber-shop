@@ -7,6 +7,14 @@ const EditableReviewCard = (props) => {
       <Rating value={props.review.star} readOnly />
       <h3>{props.review.content}</h3>
       <h4>{moment(props.review.createdAt).fromNow()}</h4>
+      <button
+        onClick={() => {
+          props.handleUserReviewDelete(props.review.id)
+        }}
+      >
+        Delete Review
+      </button>
+      <button>Edit Review</button>
     </div>
   )
 }
