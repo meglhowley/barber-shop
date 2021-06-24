@@ -75,7 +75,7 @@ const AccountPage = (props) => {
   ))
 
   const FindAllReviewsForUser = async () => {
-    const res = await axios.get(`${BASE_URL}/user`)
+    const res = await axios.get(`${BASE_URL}/reviews/user`)
     console.log(res)
     console.log(res.data)
     dispatch({ type: 'setUserReviews', payload: res.data })
