@@ -29,6 +29,9 @@ const Nav = (props) => {
       <NavLink className="nav-link" to="/booking">
         Book an Appointment
       </NavLink>
+      <NavLink className="nav-link" to="/reviews">
+        Reviews
+      </NavLink>
       <div className="btns-container">
         <button
           onClick={
