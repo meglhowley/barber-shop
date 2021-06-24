@@ -1,4 +1,4 @@
-const { Appointment } = require('../models')
+const { Appointment, Services, Barber } = require('../models')
 const { Op } = require('sequelize')
 
 const CreateAppointment = async (req, res) => {
@@ -12,9 +12,7 @@ const CreateAppointment = async (req, res) => {
       date,
       duration
     }
-    // apptBody.userId = parseInt(reviewBody.userId)
-    // apptBody.barberId = parseInt(reviewBody.barberId)
-    // apptBody.serviceId = parseInt(reviewBody.serviceId)
+
     const appt = await Appointment.create(apptBody)
     res.send(appt)
   } catch (error) {
@@ -47,10 +45,33 @@ const FindAppointmentById = async (req, res) => {
     throw error
   }
 }
-const FindAppointmentByUserId = async (req, res) => {
+const FindUpcomingAppointmentByUserId = async (req, res) => {
   try {
-    let userId = parseInt(req.params.user_id)
-    const appt = await Appointment.findAll({ where: { userId: userId } })
+    let userId = parseInt(req.query.user_id)
+    let today = req.query.today
+    const appt = await Appointment.findAll({
+      where: {
+        [Op.and]: [{ userId: userId }, { date: { [Op.gte]: today } }]
+      },
+      include: [{ model: Services }, { model: Barber }],
+      order: [['date', 'ASC']]
+    })
+    res.send(appt)
+  } catch (error) {
+    throw error
+  }
+}
+const FindPastAppointmentByUserId = async (req, res) => {
+  try {
+    let userId = parseInt(req.query.user_id)
+    let today = req.query.today
+    const appt = await Appointment.findAll({
+      where: {
+        [Op.and]: [{ userId: userId }, { date: { [Op.lt]: today } }]
+      },
+      include: [{ model: Services }, { model: Barber }],
+      order: [['date', 'ASC']]
+    })
     res.send(appt)
   } catch (error) {
     throw error
@@ -76,6 +97,7 @@ module.exports = {
   DeleteAppointment,
   FindAllAppointments,
   FindAppointmentById,
-  FindAppointmentByUserId,
+  FindUpcomingAppointmentByUserId,
+  FindPastAppointmentByUserId,
   FindAppointmentByDate
 }
