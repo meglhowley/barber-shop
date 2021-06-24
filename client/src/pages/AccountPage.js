@@ -1,5 +1,4 @@
-import Nav from '../components/Nav'
-import { useEffect, useState, useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
 import moment from 'moment'

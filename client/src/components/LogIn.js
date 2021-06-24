@@ -1,7 +1,7 @@
 import { Modal } from 'react-rainbow-components'
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import { BASE_URL } from '../globals'
+// import { useState, useEffect } from 'react'
+// import axios from 'axios'
+// import { BASE_URL } from '../globals'
 
 const LogIn = (props) => {
   return (

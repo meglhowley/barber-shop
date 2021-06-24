@@ -1,6 +1,5 @@
-import { ProgressStep } from 'react-rainbow-components'
 import { NavLink } from 'react-router-dom'
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 
 const Nav = (props) => {
   const handleClickLogIn = (e) => {
