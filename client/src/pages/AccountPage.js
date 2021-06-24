@@ -19,8 +19,6 @@ const reducer = (state, action) => {
 }
 
 const AccountPage = (props) => {
-  //const { user_id } = props
-  const user_id = 4
   const [state, dispatch] = useReducer(reducer, iState)
   const todayDate = moment().format('YYYY-MM-DD')
 
@@ -30,22 +28,19 @@ const AccountPage = (props) => {
   }, [])
 
   const FindAllUpcomingAppointments = async () => {
-    if (user_id) {
-      const res = await axios.get(
-        `${BASE_URL}/appointment/upcoming?user_id=${user_id}&today=${todayDate}`
-      )
-      console.log(res.data)
-      dispatch({ type: 'setUpcomingAppointments', payload: res.data })
-    }
+    const res = await axios.get(
+      `${BASE_URL}/appointment/upcoming?today=${todayDate}`
+    )
+    console.log(res.data)
+    dispatch({ type: 'setUpcomingAppointments', payload: res.data })
   }
+
   const FindAllPastAppointments = async () => {
-    if (user_id) {
-      const res = await axios.get(
-        `${BASE_URL}/appointment/past?user_id=${user_id}&today=${todayDate}`
-      )
-      console.log(res.data)
-      dispatch({ type: 'setPastAppointments', payload: res.data })
-    }
+    const res = await axios.get(
+      `${BASE_URL}/appointment/past?today=${todayDate}`
+    )
+    console.log(res.data)
+    dispatch({ type: 'setPastAppointments', payload: res.data })
   }
 
   const mappedAppointments = state.upcomingAppointments.map((appt, i) => (
@@ -63,7 +58,6 @@ const AccountPage = (props) => {
     </div>
   ))
 
-  console.log(user_id)
   return (
     <div>
       <h2>Upcoming Appointments</h2>
