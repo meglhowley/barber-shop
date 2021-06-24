@@ -34,9 +34,9 @@ const DeleteReview = async (req, res) => {
 const FindAllReviews = async (req, res) => {
   try {
     let reviews = await Review.findAll({
-      include: [{ model: User, attributes: ['firstName', 'lastName'] }]
+      include: [{ model: User, attributes: ['firstName', 'lastName'] }],
+      order: [['updatedAt', 'DESC']]
     })
-    console.log(reviews)
     res.send(reviews)
   } catch (error) {
     throw error
