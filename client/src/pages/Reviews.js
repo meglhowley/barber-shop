@@ -2,6 +2,7 @@ import { useEffect, useState, useReducer } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
 import ReviewForm from '../components/ReviewForm'
+import ReviewCard from '../components/ReviewCard'
 
 const iState = {
   reviews: [],
@@ -36,12 +37,13 @@ const Reviews = (props) => {
   const createNewReview = async () => {}
 
   const mappedReviews = state.reviews.map((review, i) => (
-    <div key={i}>
-      <h2>{`${review.User.firstName} ${review.User.lastName[0]}.`}</h2>
-      <p>{review.star}</p>
-      <h3>{review.content}</h3>
-      <h3>{review.createdAt}</h3>
-    </div>
+    // <div key={i}>
+    //   <h2>{`${review.User.firstName} ${review.User.lastName[0]}.`}</h2>
+    //   <p>{review.star}</p>
+    //   <h3>{review.content}</h3>
+    //   <h3>{review.createdAt}</h3>
+    // </div>
+    <ReviewCard key={i} review={review} />
   ))
   return (
     <div>
