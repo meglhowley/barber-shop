@@ -51,7 +51,6 @@ const Reviews = (props) => {
         >
           Add a Review
         </button>
-        {state.newReview}
       </div>
       <div className="all-reviews">{mappedReviews}</div>
     </div>
