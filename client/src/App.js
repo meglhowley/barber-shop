@@ -115,12 +115,12 @@ const App = () => {
         <Route
           exact
           path="/account"
-          component={(props) => <AccountPage {...props} />}
+          component={(props) => <AccountPage {...props} userId={userId} />}
         />
         <Route
           exact
           path="/reviews"
-          component={(props) => <Reviews {...props} />}
+          component={(props) => <Reviews {...props} userId={userId} />}
         />
         <Route
           exact

@@ -1,15 +1,18 @@
-import Nav from '../components/Nav'
 import { useEffect, useState, useReducer } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
+import ReviewForm from '../components/ReviewForm'
 
 const iState = {
-  reviews: []
+  reviews: [],
+  newReview: false
 }
 const reducer = (state, action) => {
   switch (action.type) {
     case 'setReviews':
       return { ...state, reviews: action.payload }
+    case 'toggleNewReview':
+      return { ...state, newReview: action.payload }
     default:
       return state
   }
@@ -17,16 +20,20 @@ const reducer = (state, action) => {
 
 const Reviews = (props) => {
   const [state, dispatch] = useReducer(reducer, iState)
+  console.log(props)
 
   useEffect(() => {
     FindAllReviews()
-  }, [])
+    console.log(state)
+  }, [state.newReview])
 
   const FindAllReviews = async () => {
     const res = await axios.get(`${BASE_URL}/reviews/all`)
     console.log(res.data)
     dispatch({ type: 'setReviews', payload: res.data })
   }
+
+  const createNewReview = async () => {}
 
   const mappedReviews = state.reviews.map((review, i) => (
     <div key={i}>
@@ -39,6 +46,22 @@ const Reviews = (props) => {
   return (
     <div>
       <h2>Reviews Page</h2>
+      <div>
+        <button
+          onClick={() => {
+            dispatch({ type: 'toggleNewReview', payload: !state.newReview })
+          }}
+        >
+          Add a Review
+        </button>
+        {state.newReview ? (
+          <ReviewForm
+            dispatch={dispatch}
+            iState={state}
+            userId={props.userId}
+          />
+        ) : null}
+      </div>
       <div className="all-reviews">{mappedReviews}</div>
     </div>
   )
