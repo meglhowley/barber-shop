@@ -3,7 +3,7 @@ const { Op } = require('sequelize')
 
 const CreateAppointment = async (req, res) => {
   try {
-    const { barberId, userId, serviceId, date, duration } = req.body
+    const { barberId, serviceId, date, duration } = req.body
 
     let apptBody = {
       barberId,
@@ -47,7 +47,7 @@ const FindAppointmentById = async (req, res) => {
 }
 const FindUpcomingAppointmentByUserId = async (req, res) => {
   try {
-    let userId = parseInt(req.query.user_id)
+    let userId = parseInt(res.locals.payload.id)
     let today = req.query.today
     const appt = await Appointment.findAll({
       where: {
@@ -63,7 +63,7 @@ const FindUpcomingAppointmentByUserId = async (req, res) => {
 }
 const FindPastAppointmentByUserId = async (req, res) => {
   try {
-    let userId = parseInt(req.query.user_id)
+    let userId = parseInt(res.locals.payload.id)
     let today = req.query.today
     const appt = await Appointment.findAll({
       where: {
