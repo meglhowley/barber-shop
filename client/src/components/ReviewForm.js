@@ -17,7 +17,6 @@ const ReviewForm = (props) => {
   console.log(props)
   const [newPost, setNewPost] = useState({
     content: '',
-    userId: props.userId,
     star: 3
   })
   const [posts, setPosts] = useState([])
@@ -31,10 +30,17 @@ const ReviewForm = (props) => {
     try {
       console.log(newPost)
       // let token = localStorage.getItem('token')
-      // const res = await axios.post(`${BASE_URL}/reviews/create`, newPost)
-      // setPosts([...posts, res.data])
-      // props.dispatch({ type: 'setReviews', payload: res.data })
-      // setNewPost({ star: 3, content: '' })
+      const res = await axios.post(`${BASE_URL}/reviews/create`, newPost)
+      console.log(res.data)
+      props.dispatch({
+        type: 'setReviews',
+        payload: [res.data, ...props.state.reviews]
+      })
+      setNewPost({ star: 3, content: '' })
+      // props.dispatch({
+      //   type: 'toggleNewReview',
+      //   payload: !props.iState.newReview
+      // })
       // toggleCreatePostOpen(false)
     } catch (error) {
       console.log(error)
@@ -44,7 +50,7 @@ const ReviewForm = (props) => {
   return (
     <div className="reviewForm">
       ReviewForm
-      <form onSubmit={submitPost}>
+      <form>
         <Rating value={newPost.star} onChange={handleChange} name="star" />
         <label>Body</label>
         <textarea
@@ -59,7 +65,7 @@ const ReviewForm = (props) => {
           onClick={() => {
             props.dispatch({
               type: 'toggleNewReview',
-              payload: !props.iState.newReview
+              payload: !props.state.newReview
             })
           }}
         >

@@ -10,6 +10,9 @@ const CreateReview = async (req, res) => {
       content
     }
     const review = await Review.create(reviewBody)
+    const user = await User.findAll({ where: { userId: userId } })
+    review.firstName = user.firstName
+    review.lastName = user.lastName
     res.send(review)
   } catch (error) {
     throw error
