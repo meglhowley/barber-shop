@@ -12,6 +12,7 @@ import Register from './components/Register'
 import axios from 'axios'
 import { BASE_URL } from './globals'
 import Reviews from './pages/Reviews'
+import ConfirmPage from './pages/ConfirmPage'
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
@@ -21,10 +22,11 @@ const App = () => {
     email: '',
     password: ''
   })
-  const [user_id, setUserId] = useState(null)
+  const [userId, setUserId] = useState(null)
 
   const logOut = () => {
     setAuthenticated(false)
+    setUserId(null)
     localStorage.clear()
   }
 
@@ -57,8 +59,12 @@ const App = () => {
 
   useEffect(() => {
     getToken()
-    console.log(user_id)
-  }, [user_id])
+  }, [])
+
+  useEffect(() => {
+    console.log(authenticated)
+    console.log(userId)
+  }, [userId])
 
   return (
     <div className="App">
@@ -99,7 +105,7 @@ const App = () => {
         <Route
           exact
           path="/booking"
-          component={(props) => <Booking {...props} user_id={user_id} />}
+          component={(props) => <Booking {...props} userId={userId} />}
         />
         <Route
           exact
@@ -115,6 +121,11 @@ const App = () => {
           exact
           path="/reviews"
           component={(props) => <Reviews {...props} />}
+        />
+        <Route
+          exact
+          path="/confirm"
+          component={(props) => <ConfirmPage {...props} />}
         />
       </Switch>
     </div>

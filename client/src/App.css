@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Archivo+Black&family=Cinzel&family=Lato&family=Lobster&family=Ultra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Raleway:wght@300&family=Work+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap');
 
 body {
   margin: 0;
@@ -22,7 +24,7 @@ body {
   height: 50px;
   text-align: right;
   font-family: 'Bebas Neue', cursive;
-  font-size: 150%;
+  font-size: 1.5em;
 }
 
 .top-section {
@@ -239,7 +241,8 @@ body {
 }
 
 .register-btn,
-.login-btn {
+.login-btn,
+.confirm-btn {
   background: linear-gradient(to right, rgb(140, 211, 233), rgb(0, 143, 187));
   color: white;
   font-family: 'Lato', sans-serif;
@@ -252,8 +255,11 @@ body {
   box-shadow: none;
 }
 
-.register-btn:hover {
+.register-btn:hover,
+.login-btn:hover,
+.confirm-btn:hover {
   cursor: pointer;
+  opacity: 0.8;
 }
 
 form {
@@ -276,4 +282,81 @@ form {
 .appt-card:hover {
   background-color: lightgray;
   cursor: pointer;
+}
+
+.appt-modal {
+  font-family: 'Lato', sans-serif;
+  height: 600px;
+}
+
+.pick-list,
+.option {
+  font-family: 'Lato', sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  margin-left: -40px;
+}
+
+.confirm-div {
+  font-family: 'Lato', sans-serif;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.appt-title-div {
+  margin-left: 40px;
+}
+
+.appt-monacle {
+  width: 50px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.confirmation {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Kumbh Sans', sans-serif;
+}
+
+.you-did-it {
+  font-size: 7em;
+}
+
+.scissors-gif {
+  width: 25%;
+  margin: 0 auto;
+  margin-top: -100px;
+}
+
+.btns-div {
+  display: flex;
+  width: 350px;
+  margin: 0 auto;
+}
+
+.back-btn {
+  font-family: 'Kumbh Sans', sans-serif;
+  font-size: 1em;
+  width: 150px;
+  margin: 0 auto;
+  height: 50px;
+  background-color: black;
+  color: white;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.back-btn:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  transition: 100ms ease-in;
 }

@@ -15,7 +15,8 @@ const iState = {
   barbers: [],
   timeSlots: [],
   services: [],
-  openApptForm: false
+  openApptForm: false,
+  selectedTime: null
 }
 
 const reducer = (state, action) => {
@@ -32,6 +33,8 @@ const reducer = (state, action) => {
       return { ...state, openApptForm: action.payload }
     case 'handleLoginForm':
       return { ...state, loginForm: action.payload }
+    case 'setSelectedTime':
+      return { ...state, selectedTime: action.payload }
     default:
       return state
   }
@@ -50,9 +53,15 @@ const Booking = (props) => {
     dispatch({ type: 'setServices', payload: res.data })
   }
 
+  const handleClick = (timeslot) => {
+    dispatch({ type: 'toggleOpenApptForm', payload: true })
+    dispatch({ type: 'setSelectedTime', payload: timeslot.slice(11) })
+  }
+
   useEffect(() => {
     findAllBarbers()
     findAllServices()
+    console.log(props)
   }, [])
 
   const barberList = (value) => {
@@ -67,24 +76,27 @@ const Booking = (props) => {
   }
 
   const timeSlotMap = state.timeSlots.map((timeslot, index) => {
-    const timeOnly = timeslot.slice(11)
+    let timeOnly = timeslot.slice(11)
     return (
       <div>
-        <div
-          onClick={() =>
-            dispatch({ type: 'toggleOpenApptForm', payload: true })
-          }
-          className="appt-card"
-        >
-          {timeOnly}
+        <div onClick={() => handleClick(timeslot)} className="appt-card">
+          {parseInt(timeOnly) === 12
+            ? `${timeOnly} - 01:00`
+            : parseInt(timeOnly) + 1 < 10
+            ? `${timeOnly} - 0${parseInt(timeOnly) + 1}:00`
+            : `${timeOnly} - ${parseInt(timeOnly) + 1}:00`}
         </div>
+        {console.log(parseInt(timeOnly))}
         <AppointmentForm
           apptTime={timeOnly}
           barbers={state.barbers}
           services={state.services}
           openApptForm={state.openApptForm}
           dispatch={dispatch}
-          user_id={props.user_id}
+          userId={props.userId}
+          selectedDate={state.selectedDate}
+          selectedTime={state.selectedTime}
+          history={props.history}
         />
       </div>
     )
