@@ -25,6 +25,7 @@ const App = () => {
 
   const logOut = () => {
     setAuthenticated(false)
+    setUserId(null)
     localStorage.clear()
   }
 
