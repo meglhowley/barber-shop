@@ -7,7 +7,7 @@ const CreateAppointment = async (req, res) => {
 
     let apptBody = {
       barberId,
-      userId,
+      userId: res.locals.payload.id,
       serviceId,
       date,
       duration

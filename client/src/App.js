@@ -12,6 +12,7 @@ import Register from './components/Register'
 import axios from 'axios'
 import { BASE_URL } from './globals'
 import Reviews from './pages/Reviews'
+import ConfirmPage from './pages/ConfirmPage'
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
@@ -58,6 +59,11 @@ const App = () => {
 
   useEffect(() => {
     getToken()
+  }, [])
+
+  useEffect(() => {
+    console.log(authenticated)
+    console.log(userId)
   }, [userId])
 
   return (
@@ -115,6 +121,11 @@ const App = () => {
           exact
           path="/reviews"
           component={(props) => <Reviews {...props} userId={userId} />}
+        />
+        <Route
+          exact
+          path="/confirm"
+          component={(props) => <ConfirmPage {...props} />}
         />
       </Switch>
     </div>
