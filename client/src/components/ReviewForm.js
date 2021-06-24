@@ -4,19 +4,22 @@ import { BASE_URL } from '../globals'
 import { Card, ButtonGroup, ButtonIcon, Rating } from 'react-rainbow-components'
 // import e from 'express'
 
-const SimpleRating = (props) => {
-  const [value, setValue] = useState(3)
+// const SimpleRating = (props) => {
+//   console.log(props)
+//   const handleOnChange = (e) => {
+//     return props.setNewPost({ star: e.target.value })
+//   }
 
-  const handleOnChange = (e) => {
-    return setValue(e.target.value)
-  }
-
-  return <Rating value={value} onChange={handleOnChange} />
-}
+//   return <Rating value={props.star} onChange={handleOnChange} />
+// }
 
 const ReviewForm = (props) => {
   console.log(props)
-  const [newPost, setNewPost] = useState({ rating: '', body: '' })
+  const [newPost, setNewPost] = useState({
+    content: '',
+    userId: props.userId,
+    star: 3
+  })
   const [posts, setPosts] = useState([])
 
   const handleChange = (e) => {
@@ -28,9 +31,10 @@ const ReviewForm = (props) => {
     try {
       console.log(newPost)
       // let token = localStorage.getItem('token')
-      // const res = await axios.post(`${BASE_URL}/posts`, newPost)
+      const res = await axios.post(`${BASE_URL}/reviews/create`, newPost)
       // setPosts([...posts, res.data])
-      // setNewPost({ title: '', body: '', image: '' })
+      props.dispatch({ type: 'setReviews', payload: res.data })
+      setNewPost({ star: 3, content: '' })
       // toggleCreatePostOpen(false)
     } catch (error) {
       console.log(error)
@@ -41,13 +45,13 @@ const ReviewForm = (props) => {
     <div className="reviewForm">
       ReviewForm
       <form onSubmit={submitPost}>
-        <SimpleRating />
+        <Rating value={newPost.star} onChange={handleChange} name="star" />
         <label>Body</label>
         <textarea
           onChange={handleChange}
           type="text"
-          name="body"
-          value={newPost.body}
+          name="content"
+          value={newPost.content}
           placeholder="Leave details about your review here!"
         />
         <button
