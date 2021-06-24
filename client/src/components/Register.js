@@ -10,6 +10,7 @@ const Register = (props) => {
     firstName: '',
     lastName: ''
   })
+  const [errorMessage, handleErrorMessage] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,8 +26,10 @@ const Register = (props) => {
         lastName: ''
       })
       props.toggleRegisterOpen(false)
+      handleErrorMessage('')
     } catch (error) {
       console.log(error.response)
+      handleErrorMessage(error.response.data.msg)
     }
   }
 
@@ -78,6 +81,7 @@ const Register = (props) => {
             onChange={handleChange}
             required
           />
+          {errorMessage ? <p>{errorMessage}</p> : null}
           <br />
           <input
             type="password"
