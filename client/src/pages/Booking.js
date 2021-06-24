@@ -90,7 +90,33 @@ const Booking = (props) => {
 
   const timeSlotMap = state.timeSlots.map((timeslot, index) => {
     let timeOnly = timeslot.slice(11)
+    if (state.bookedAppointments.length < 1) {
+      return (
+        <div>
+          <div onClick={() => handleClick(timeslot)} className="appt-card">
+            {parseInt(timeOnly) === 12
+              ? `${timeOnly} - 01:00`
+              : parseInt(timeOnly) + 1 < 10
+              ? `${timeOnly} - 0${parseInt(timeOnly) + 1}:00`
+              : `${timeOnly} - ${parseInt(timeOnly) + 1}:00`}
+          </div>
+          <AppointmentForm
+            apptTime={timeOnly}
+            barbers={state.barbers}
+            services={state.services}
+            openApptForm={state.openApptForm}
+            dispatch={dispatch}
+            userId={props.userId}
+            selectedDate={state.selectedDate}
+            selectedTime={state.selectedTime}
+            history={props.history}
+          />
+        </div>
+      )
+    }
     for (let i = 0; i < state.bookedAppointments.length; i++) {
+      console.log(parseInt(timeOnly))
+      console.log(state.bookedAppointments[i].startTime)
       if (
         parseInt(timeOnly) !== parseInt(state.bookedAppointments[i].startTime)
       ) {
