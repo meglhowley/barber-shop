@@ -3,14 +3,15 @@ const { Op } = require('sequelize')
 
 const CreateAppointment = async (req, res) => {
   try {
-    const { barberId, serviceId, date, duration } = req.body
+    const { barberId, serviceId, date, duration, startTime } = req.body
 
     let apptBody = {
       barberId,
       userId: res.locals.payload.id,
       serviceId,
       date,
-      duration
+      duration,
+      startTime
     }
 
     const appt = await Appointment.create(apptBody)

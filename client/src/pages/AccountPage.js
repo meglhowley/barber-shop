@@ -37,7 +37,6 @@ const AccountPage = (props) => {
     const res = await axios.get(
       `${BASE_URL}/appointment/upcoming?today=${todayDate}`
     )
-    console.log(res.data)
     dispatch({ type: 'setUpcomingAppointments', payload: res.data })
   }
 
