@@ -20,6 +20,7 @@ const reducer = (state, action) => {
 
 const Reviews = (props) => {
   const [state, dispatch] = useReducer(reducer, iState)
+  console.log(props)
 
   useEffect(() => {
     FindAllReviews()
@@ -54,7 +55,11 @@ const Reviews = (props) => {
           Add a Review
         </button>
         {state.newReview ? (
-          <ReviewForm dispatch={dispatch} state={state} />
+          <ReviewForm
+            dispatch={dispatch}
+            iState={state}
+            userId={props.userId}
+          />
         ) : null}
       </div>
       <div className="all-reviews">{mappedReviews}</div>
