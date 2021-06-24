@@ -91,6 +91,14 @@ const FindAppointmentByDate = async (req, res) => {
     throw error
   }
 }
+const DeleteAllAppointment = async (req, res) => {
+  try {
+    await Appointment.destroy({ truncate: true })
+    res.send({ message: `Deleted appointments` })
+  } catch (error) {
+    throw error
+  }
+}
 
 module.exports = {
   CreateAppointment,
@@ -99,5 +107,6 @@ module.exports = {
   FindAppointmentById,
   FindUpcomingAppointmentByUserId,
   FindPastAppointmentByUserId,
-  FindAppointmentByDate
+  FindAppointmentByDate,
+  DeleteAllAppointment
 }

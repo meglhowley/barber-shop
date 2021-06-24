@@ -14,6 +14,7 @@ router.delete(
   middleware.verifyToken,
   controller.DeleteAppointment
 )
+router.delete('/delete/all', controller.DeleteAllAppointment)
 router.get('/all', controller.FindAllAppointments)
 router.get('/id/:appt_id', controller.FindAppointmentById)
 router.get(

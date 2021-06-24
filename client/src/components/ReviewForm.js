@@ -31,10 +31,10 @@ const ReviewForm = (props) => {
     try {
       console.log(newPost)
       // let token = localStorage.getItem('token')
-      const res = await axios.post(`${BASE_URL}/reviews/create`, newPost)
+      // const res = await axios.post(`${BASE_URL}/reviews/create`, newPost)
       // setPosts([...posts, res.data])
-      props.dispatch({ type: 'setReviews', payload: res.data })
-      setNewPost({ star: 3, content: '' })
+      // props.dispatch({ type: 'setReviews', payload: res.data })
+      // setNewPost({ star: 3, content: '' })
       // toggleCreatePostOpen(false)
     } catch (error) {
       console.log(error)
@@ -54,17 +54,17 @@ const ReviewForm = (props) => {
           value={newPost.content}
           placeholder="Leave details about your review here!"
         />
+        <button onClick={submitPost}>Submit Review</button>
         <button
           onClick={() => {
             props.dispatch({
               type: 'toggleNewReview',
-              payload: !props.state.newReview
+              payload: !props.iState.newReview
             })
           }}
         >
           Close Review
         </button>
-        <button onClick={submitPost}>Submit Review</button>
       </form>
     </div>
   )
