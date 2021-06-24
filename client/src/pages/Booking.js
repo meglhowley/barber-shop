@@ -16,7 +16,8 @@ const iState = {
   timeSlots: [],
   services: [],
   openApptForm: false,
-  selectedTime: null
+  selectedTime: null,
+  bookedAppointments: []
 }
 
 const reducer = (state, action) => {
@@ -35,6 +36,8 @@ const reducer = (state, action) => {
       return { ...state, loginForm: action.payload }
     case 'setSelectedTime':
       return { ...state, selectedTime: action.payload }
+    case 'setBookedAppointments':
+      return { ...state, bookedAppointments: action.payload }
     default:
       return state
   }
@@ -55,9 +58,8 @@ const Booking = (props) => {
 
   const FindAppointmentByDate = async () => {
     const dateString = moment(state.selectedDate).format('YYYY-MM-DD')
-    console.log(dateString)
     const res = await axios.get(`${BASE_URL}/appointment/date/${dateString}`)
-    console.log(res.data)
+    dispatch({ type: 'setBookedAppointments', payload: res.data })
   }
 
   const handleClick = (timeslot) => {
@@ -71,9 +73,8 @@ const Booking = (props) => {
   }, [])
 
   useEffect(() => {
-    console.log(state.selectedDate)
-    console.log(state.selectedDate.toDateString())
     FindAppointmentByDate()
+    // console.log(parseInt(state.bookedAppointments[0].startTime))
   }, [state.selectedDate])
 
   const barberList = (value) => {
@@ -89,28 +90,34 @@ const Booking = (props) => {
 
   const timeSlotMap = state.timeSlots.map((timeslot, index) => {
     let timeOnly = timeslot.slice(11)
-    return (
-      <div>
-        <div onClick={() => handleClick(timeslot)} className="appt-card">
-          {parseInt(timeOnly) === 12
-            ? `${timeOnly} - 01:00`
-            : parseInt(timeOnly) + 1 < 10
-            ? `${timeOnly} - 0${parseInt(timeOnly) + 1}:00`
-            : `${timeOnly} - ${parseInt(timeOnly) + 1}:00`}
-        </div>
-        <AppointmentForm
-          apptTime={timeOnly}
-          barbers={state.barbers}
-          services={state.services}
-          openApptForm={state.openApptForm}
-          dispatch={dispatch}
-          userId={props.userId}
-          selectedDate={state.selectedDate}
-          selectedTime={state.selectedTime}
-          history={props.history}
-        />
-      </div>
-    )
+    for (let i = 0; i < state.bookedAppointments.length; i++) {
+      if (
+        parseInt(timeOnly) !== parseInt(state.bookedAppointments[i].startTime)
+      ) {
+        return (
+          <div>
+            <div onClick={() => handleClick(timeslot)} className="appt-card">
+              {parseInt(timeOnly) === 12
+                ? `${timeOnly} - 01:00`
+                : parseInt(timeOnly) + 1 < 10
+                ? `${timeOnly} - 0${parseInt(timeOnly) + 1}:00`
+                : `${timeOnly} - ${parseInt(timeOnly) + 1}:00`}
+            </div>
+            <AppointmentForm
+              apptTime={timeOnly}
+              barbers={state.barbers}
+              services={state.services}
+              openApptForm={state.openApptForm}
+              dispatch={dispatch}
+              userId={props.userId}
+              selectedDate={state.selectedDate}
+              selectedTime={state.selectedTime}
+              history={props.history}
+            />
+          </div>
+        )
+      }
+    }
   })
 
   return (
