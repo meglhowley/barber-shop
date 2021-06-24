@@ -109,7 +109,7 @@ const App = () => {
         <Route
           exact
           path="/account"
-          component={(props) => <AccountPage {...props} />}
+          component={(props) => <AccountPage {...props} user_id={user_id} />}
         />
         <Route
           exact

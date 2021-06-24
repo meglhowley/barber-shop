@@ -1,4 +1,4 @@
-const { Appointment } = require('../models')
+const { Appointment, Services, Barber } = require('../models')
 const { Op } = require('sequelize')
 
 const CreateAppointment = async (req, res) => {
@@ -12,9 +12,7 @@ const CreateAppointment = async (req, res) => {
       date,
       duration
     }
-    // apptBody.userId = parseInt(reviewBody.userId)
-    // apptBody.barberId = parseInt(reviewBody.barberId)
-    // apptBody.serviceId = parseInt(reviewBody.serviceId)
+
     const appt = await Appointment.create(apptBody)
     res.send(appt)
   } catch (error) {
@@ -50,7 +48,13 @@ const FindAppointmentById = async (req, res) => {
 const FindAppointmentByUserId = async (req, res) => {
   try {
     let userId = parseInt(req.params.user_id)
-    const appt = await Appointment.findAll({ where: { userId: userId } })
+    const appt = await Appointment.findAll({
+      where: {
+        [Op.and]: [{ userId: userId }, { date: { [Op.gt]: '2021-06-05' } }]
+      },
+      include: [{ model: Services }],
+      order: [['date', 'ASC']]
+    })
     res.send(appt)
   } catch (error) {
     throw error
