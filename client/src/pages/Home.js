@@ -1,5 +1,3 @@
-import Nav from '../components/Nav'
-
 const iState = {}
 
 const Home = () => {

@@ -1,4 +1,3 @@
-import Nav from '../components/Nav'
 import { useEffect, useState, useReducer } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
@@ -32,6 +31,8 @@ const Reviews = (props) => {
     console.log(res.data)
     dispatch({ type: 'setReviews', payload: res.data })
   }
+
+  const createNewReview = async () => {}
 
   const mappedReviews = state.reviews.map((review, i) => (
     <div key={i}>
