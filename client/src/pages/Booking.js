@@ -53,6 +53,13 @@ const Booking = (props) => {
     dispatch({ type: 'setServices', payload: res.data })
   }
 
+  const FindAppointmentByDate = async () => {
+    const dateString = moment(state.selectedDate).format('YYYY-MM-DD')
+    console.log(dateString)
+    const res = await axios.get(`${BASE_URL}/appointment/date/${dateString}`)
+    console.log(res.data)
+  }
+
   const handleClick = (timeslot) => {
     dispatch({ type: 'toggleOpenApptForm', payload: true })
     dispatch({ type: 'setSelectedTime', payload: timeslot.slice(11) })
@@ -61,8 +68,13 @@ const Booking = (props) => {
   useEffect(() => {
     findAllBarbers()
     findAllServices()
-    console.log(props)
   }, [])
+
+  useEffect(() => {
+    console.log(state.selectedDate)
+    console.log(state.selectedDate.toDateString())
+    FindAppointmentByDate()
+  }, [state.selectedDate])
 
   const barberList = (value) => {
     let start = 8
@@ -86,7 +98,6 @@ const Booking = (props) => {
             ? `${timeOnly} - 0${parseInt(timeOnly) + 1}:00`
             : `${timeOnly} - ${parseInt(timeOnly) + 1}:00`}
         </div>
-        {console.log(parseInt(timeOnly))}
         <AppointmentForm
           apptTime={timeOnly}
           barbers={state.barbers}

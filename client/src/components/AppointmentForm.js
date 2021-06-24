@@ -2,6 +2,7 @@ import { Modal, Option, Picklist } from 'react-rainbow-components'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
+import moment from 'moment'
 
 const AppointmentForm = (props) => {
   const [selectedBarber, setState] = useState({
@@ -46,8 +47,9 @@ const AppointmentForm = (props) => {
     const res = await axios.post(`${BASE_URL}/appointment/create`, {
       barberId: barberId,
       serviceId: serviceId,
-      date: props.selectedDate.toDateString(),
-      duration: 60
+      date: moment(props.selectedDate).format('YYYY-MM-DD'),
+      duration: 60,
+      startTime: props.selectedTime
     })
     console.log(res.data)
     props.dispatch({ type: 'toggleOpenApptForm', payload: false })
@@ -67,7 +69,7 @@ const AppointmentForm = (props) => {
 
   useEffect(() => {
     findServiceId()
-    console.log(props)
+    console.log(props.selectedTime)
   }, [selectedService])
 
   return (
