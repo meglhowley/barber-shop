@@ -84,7 +84,8 @@ const Booking = (props) => {
           services={state.services}
           openApptForm={state.openApptForm}
           dispatch={dispatch}
-          user_id={props.user_id}
+          userId={props.userId}
+          selectedDate={state.selectedDate}
         />
       </div>
     )
