@@ -365,3 +365,8 @@ ul {
   border: 10px solid black;
   border-radius: 1px;
 }
+
+.appointment-card {
+  border: solid 1px black;
+  width: 400px;
+}
