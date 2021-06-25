@@ -784,3 +784,27 @@ form {
     left: 32vw;
   }
 }
+
+.barber-pole-container {
+  overflow: hidden;
+  max-height: 3vh;
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+  width: 100vw;
+}
+.rotating-barber-pole {
+  background: url('https://i.imgur.com/yDRWESW.jpg?2') repeat-x;
+  height: 2vh;
+  width: 5076px;
+  animation: slide 60s linear infinite;
+  animation-direction: alternate;
+}
+
+@keyframes slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-1692px, 0, 0);
+  }
+}
