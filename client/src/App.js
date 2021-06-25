@@ -13,7 +13,6 @@ import axios from 'axios'
 import { BASE_URL } from './globals'
 import Reviews from './pages/Reviews'
 import ConfirmPage from './pages/ConfirmPage'
-import BookingTwo from './pages/BookingTwo'
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
@@ -53,11 +52,9 @@ const App = () => {
       handleLoginForm({ email: '', password: '' })
       toggleLoginOpen(false)
       setAuthenticated(true)
-      setLoginError('')
       //setUserId(res.data.user.id)
     } catch (error) {
       console.log(error)
-      setLoginError(error.response.data.msg)
     }
   }
 
@@ -92,7 +89,6 @@ const App = () => {
           loginForm={loginForm}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
-          loginError={loginError}
         />
         <Register
           registerOpen={registerOpen}
