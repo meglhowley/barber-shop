@@ -49,7 +49,6 @@ const AccountPage = (props) => {
     const res = await axios.get(
       `${BASE_URL}/appointment/past?today=${todayDate}`
     )
-    console.log(res.data)
     dispatch({ type: 'setPastAppointments', payload: res.data })
   }
 
@@ -76,10 +75,7 @@ const AccountPage = (props) => {
 
   const FindAllReviewsForUser = async () => {
     const res = await axios.get(`${BASE_URL}/reviews/user`)
-    console.log(res)
-    console.log(res.data)
     dispatch({ type: 'setUserReviews', payload: res.data })
-    console.log(res.data)
   }
 
   const handleUserReviewDelete = async (review_id) => {
