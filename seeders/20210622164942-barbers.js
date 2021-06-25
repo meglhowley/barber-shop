@@ -3,9 +3,6 @@ const moment = require('moment')
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    let startTime = 8
-    let endTime = 17
-    const times = { startTime: startTime, endTime: endTime }
     await queryInterface.bulkInsert(
       'barbers',
       [

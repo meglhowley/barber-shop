@@ -12,10 +12,13 @@
 ### *About the App*
 Barber-Shop Booking is a fully-functional, ready-made barber solution with user authentication that allows clients to sign up, sign in, and book appointments with a specified stylist for a variety of services. As an alternative to relying on 3rd party booking apps like Booksy, Barber-shop offers entrepreneurs and shop owners alike the ability to book appointments directly with their future guests. 
 
-Guests will enjoy a simple user experience with a calendar of options that drills down to an array of 30 min or 60 min time slots, filtered by their preferred stylist- if applicable. Barbers/Stylists have the benefit of posting their individual availabilites on a custom basis.
+Guests will enjoy a simple user experience with a calendar of options that drills down to an array of 60 min time slots, filtered by their preferred stylist. 
 ***
 ### *Technologies Used*
 This application was built using the PERN stack: PostgreSQL/Express/React/Node.js. The database was created/managed using PostgreSQL (psql), in tandem with Sequelize as the promise-based ORM library. A RESTful API was created and called on using Axios. Front-end was built out using React (with Hooks) / Functional Components/ CSS/ & JSX. The web/server framework was built using Express. Additional developer tools leveraged were VS Code, Github, Insomnia, Postico, commandline CLI, and UX libraries. 
+***
+### *ERD*
+![ERD](https://imgur.com/m0Rh79h.jpg)
 ***
 ### *Getting Started*
 ![landing](https://airows.com/.image/t_share/MTM4NTIzMTUyMTk5MTk4MTE5/img_9010jpg.jpg)
