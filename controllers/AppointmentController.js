@@ -95,6 +95,23 @@ const FindAppointmentByDate = async (req, res) => {
     throw error
   }
 }
+const FindAppointmentByBarberIdDate = async (req, res) => {
+  try {
+    let barberId = parseInt(req.query.barber)
+    let today = req.query.today
+    let compstring = `${today}%`
+    const appt = await Appointment.findAll({
+      where: {
+        [Op.and]: [{ date: { [Op.like]: compstring } }, { barberId: barberId }]
+      },
+      include: [{ model: Services }, { model: Barber }],
+      order: [['startTime', 'ASC']]
+    })
+    res.send(appt)
+  } catch (error) {
+    throw error
+  }
+}
 const DeleteAllAppointment = async (req, res) => {
   try {
     await Appointment.destroy({ truncate: true })
@@ -111,6 +128,7 @@ module.exports = {
   FindAppointmentById,
   FindUpcomingAppointmentByUserId,
   FindPastAppointmentByUserId,
+  FindAppointmentByBarberIdDate,
   FindAppointmentByDate,
   DeleteAllAppointment
 }

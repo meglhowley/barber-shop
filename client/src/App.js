@@ -13,6 +13,7 @@ import axios from 'axios'
 import { BASE_URL } from './globals'
 import Reviews from './pages/Reviews'
 import ConfirmPage from './pages/ConfirmPage'
+import BookingTwo from './pages/BookingTwo'
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
@@ -22,11 +23,12 @@ const App = () => {
     email: '',
     password: ''
   })
-  const [userId, setUserId] = useState(null)
+  //const [userId, setUserId] = useState(null)
+  const [loginError, setLoginError] = useState('')
 
   const logOut = () => {
     setAuthenticated(false)
-    setUserId(null)
+    //setUserId(null)
     localStorage.clear()
   }
 
@@ -51,9 +53,11 @@ const App = () => {
       handleLoginForm({ email: '', password: '' })
       toggleLoginOpen(false)
       setAuthenticated(true)
-      setUserId(res.data.user.id)
+      setLoginError('')
+      //setUserId(res.data.user.id)
     } catch (error) {
       console.log(error)
+      setLoginError(error.response.data.msg)
     }
   }
 
@@ -61,10 +65,10 @@ const App = () => {
     getToken()
   }, [])
 
-  useEffect(() => {
-    console.log(authenticated)
-    console.log(userId)
-  }, [userId])
+  // useEffect(() => {
+  //   console.log(authenticated)
+  //   console.log(userId)
+  // }, [userId])
 
   return (
     <div className="App">
@@ -88,6 +92,7 @@ const App = () => {
           loginForm={loginForm}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
+          loginError={loginError}
         />
         <Register
           registerOpen={registerOpen}
@@ -106,7 +111,12 @@ const App = () => {
         <Route
           exact
           path="/booking"
-          component={(props) => <Booking {...props} userId={userId} />}
+          component={(props) => <Booking {...props} />}
+        />
+        <Route
+          exact
+          path="/bookingtwo"
+          component={(props) => <BookingTwo {...props} />}
         />
         <Route
           exact
@@ -116,12 +126,14 @@ const App = () => {
         <Route
           exact
           path="/account"
-          component={(props) => <AccountPage {...props} userId={userId} />}
+          component={(props) => <AccountPage {...props} />}
         />
         <Route
           exact
           path="/reviews"
-          component={(props) => <Reviews {...props} userId={userId} />}
+          component={(props) => (
+            <Reviews {...props} authenticated={authenticated} />
+          )}
         />
         <Route
           exact

@@ -5,7 +5,7 @@ const Home = () => {
     <body>
       <div className="home-wrapper">
         <div className="top-section">
-          <div className="title">We care about beards.</div>
+          <div className="title">You want to look good.</div>
         </div>
         <div className="bottom-section">Bottom</div>
       </div>
