@@ -122,24 +122,25 @@ const Home = () => {
           <div className="testimonials">
             <div className="home-review">
               <i>
-                Insert Review Here.Insert Review Here.Insert Review Here.Insert
-                Review Here.Insert Review Here.Insert Review Here.Insert Review
-                Here.Insert Review Here.Insert Review Here.Insert Review
-                Here.Insert Review Here.Insert Review Here.Insert Review Here.
+                "Thanks to barber booking buddy I was able to sign up for an
+                appointment at the barbershop near me easily and quickly, and
+                the reviews section can provide a lot of insight into selecting
+                the right professional for the right service"
+                <br />
+                -Jake P.
               </i>
             </div>
             <div className="home-review">
-              Insert Review Here.Insert Review Here.Insert Review Here.Insert
-              Review Here.Insert Review Here.Insert Review Here.Insert Review
-              Here.Insert Review Here.Insert Review Here.Insert Review
-              Here.Insert Review Here.Insert Review Here.Insert Review
-              Here.Insert Review Here.
+              Best barbershop ever! The barbers are very professional and their
+              website is a joy to use. I will be going here for life! <br />
+              -Emily W.
             </div>
             <div className="home-review">
-              Insert Review Here.Insert Review Here.Insert Review Here.Insert
-              Review Here.Insert Review Here.Insert Review Here.Insert Review
-              Here.Insert Review Here.Insert Review Here.Insert Review
-              Here.Insert Review Here.
+              I felt so fresh walking out! I am going to tell everyone I know to
+              only book through BBB. I highly recommend Dom, he had made
+              laughing the entire time. Will be going back very soon.
+              <br />
+              -Megan H.
             </div>
             <footer onClick={handleUpClick} className="back-to-top">
               BACK TO TOP
