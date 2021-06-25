@@ -123,7 +123,7 @@ const App = () => {
           exact
           path="/reviews"
           component={(props) => (
-            <Reviews {...props} userId={userId} authenticated={authenticated} />
+            <Reviews {...props} authenticated={authenticated} />
           )}
         />
         <Route
