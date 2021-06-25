@@ -30,4 +30,5 @@ router.get(
   controller.FindPastAppointmentByUserId
 )
 router.get('/date/:appt_date', controller.FindAppointmentByDate)
+router.get('/barberdate', controller.FindAppointmentByBarberIdDate)
 module.exports = router
