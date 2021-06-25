@@ -22,11 +22,12 @@ const App = () => {
     email: '',
     password: ''
   })
-  const [userId, setUserId] = useState(null)
+  //const [userId, setUserId] = useState(null)
+  const [loginError, setLoginError] = useState('')
 
   const logOut = () => {
     setAuthenticated(false)
-    setUserId(null)
+    //setUserId(null)
     localStorage.clear()
   }
 
@@ -51,7 +52,7 @@ const App = () => {
       handleLoginForm({ email: '', password: '' })
       toggleLoginOpen(false)
       setAuthenticated(true)
-      setUserId(res.data.user.id)
+      //setUserId(res.data.user.id)
     } catch (error) {
       console.log(error)
     }
@@ -61,10 +62,10 @@ const App = () => {
     getToken()
   }, [])
 
-  useEffect(() => {
-    console.log(authenticated)
-    console.log(userId)
-  }, [userId])
+  // useEffect(() => {
+  //   console.log(authenticated)
+  //   console.log(userId)
+  // }, [userId])
 
   return (
     <div className="App">
@@ -106,7 +107,7 @@ const App = () => {
         <Route
           exact
           path="/booking"
-          component={(props) => <Booking {...props} userId={userId} />}
+          component={(props) => <Booking {...props} />}
         />
         <Route
           exact
@@ -116,12 +117,12 @@ const App = () => {
         <Route
           exact
           path="/account"
-          component={(props) => <AccountPage {...props} userId={userId} />}
+          component={(props) => <AccountPage {...props} />}
         />
         <Route
           exact
           path="/reviews"
-          component={(props) => <Reviews {...props} userId={userId} />}
+          component={(props) => <Reviews {...props} />}
         />
         <Route
           exact
