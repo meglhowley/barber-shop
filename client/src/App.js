@@ -111,12 +111,9 @@ const App = () => {
         <Route
           exact
           path="/booking"
-          component={(props) => <Booking {...props} />}
-        />
-        <Route
-          exact
-          path="/bookingtwo"
-          component={(props) => <BookingTwo {...props} />}
+          component={(props) => (
+            <Booking {...props} authenticated={authenticated} />
+          )}
         />
         <Route
           exact
