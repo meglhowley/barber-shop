@@ -326,19 +326,30 @@ form {
   font-family: 'Lato', sans-serif;
 }
 
-ul {
-  list-style-type: none;
-  margin-left: -40px;
-}
-
 .confirm-div {
   font-family: 'Lato', sans-serif;
   margin-top: 30px;
   margin-bottom: 20px;
+  font-size: 0.95em;
+}
+
+.confirm-div ul {
+  font-size: 0.9em;
+  list-style-type: none;
+  margin-left: -40px;
+}
+.confirm-div li {
+  margin-bottom: 5px;
 }
 
 .appt-title-div {
   margin-left: 40px;
+  font-size: 0.9em;
+  color: black;
+}
+.appt-title-div h2 {
+  font-size: 1.2em;
+  color: rgb(150, 148, 148);
 }
 
 .appt-monacle {
@@ -555,7 +566,6 @@ ul {
   }
 
   .testimonials {
-    /* display: flex; */
     flex-direction: column;
     flex-wrap: wrap;
     text-align: center;
@@ -583,6 +593,6 @@ ul {
     color: white;
     position: absolute;
     top: 220vh;
-    left: 35vw;
+    left: 32vw;
   }
 }

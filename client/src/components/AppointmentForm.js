@@ -92,12 +92,6 @@ const AppointmentForm = (props) => {
             value={selectedBarber.selectedBarber}
             label="Select Your Barber"
           >
-            {/* <Option
-              className="option"
-              name={`Option 0`}
-              label={'Any Barber'}
-              value={'Any Barber'}
-            /> */}
             {props.barbers.map((barber, index) => (
               <Option
                 className="option"
