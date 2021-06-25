@@ -52,6 +52,7 @@ const App = () => {
       handleLoginForm({ email: '', password: '' })
       toggleLoginOpen(false)
       setAuthenticated(true)
+      setLoginError('')
       //setUserId(res.data.user.id)
     } catch (error) {
       console.log(error)
