@@ -11,6 +11,7 @@ const LogIn = (props) => {
         isOpen={props.loginOpen}
         onRequestClose={() => props.toggleLoginOpen(false)}
       >
+        <div className="please-log-in">Please Log In Below:</div>
         <form onSubmit={props.handleSubmit}>
           <label>Email</label>
           <input

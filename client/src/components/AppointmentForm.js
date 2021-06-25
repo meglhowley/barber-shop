@@ -7,7 +7,7 @@ import moment from 'moment'
 const AppointmentForm = (props) => {
   const [selectedBarber, setState] = useState({
     selectedBarber: {
-      label: 'Any Barber',
+      label: 'Ernie',
       name: 'Option 0'
     }
   })
@@ -17,10 +17,10 @@ const AppointmentForm = (props) => {
       name: 'Option 0'
     }
   })
-  const [barberId, setBarberId] = useState(null)
-  const [serviceId, setServiceId] = useState(null)
-  const [barberName, setBarberName] = useState('')
-  const [serviceName, setServiceName] = useState('')
+  const [barberId, setBarberId] = useState(5)
+  const [serviceId, setServiceId] = useState(6)
+  const [barberName, setBarberName] = useState('Ernie')
+  const [serviceName, setServiceName] = useState('Haircut')
 
   const findBarberId = () => {
     let barberName = Object.values(selectedBarber)[0].label
@@ -51,7 +51,6 @@ const AppointmentForm = (props) => {
       duration: 60,
       startTime: props.selectedTime
     })
-    console.log(res.data)
     props.dispatch({ type: 'toggleOpenApptForm', payload: false })
     props.history.push('/confirm')
   }
@@ -63,13 +62,14 @@ const AppointmentForm = (props) => {
       ? `${props.selectedTime} - 0${parseInt(props.selectedTime) + 1}:00`
       : `${props.selectedTime} - ${parseInt(props.selectedTime) + 1}:00`
 
+  useEffect(() => {}, [])
+
   useEffect(() => {
     findBarberId()
   }, [selectedBarber])
 
   useEffect(() => {
     findServiceId()
-    console.log(props.selectedTime)
   }, [selectedService])
 
   return (
@@ -92,12 +92,12 @@ const AppointmentForm = (props) => {
             value={selectedBarber.selectedBarber}
             label="Select Your Barber"
           >
-            <Option
+            {/* <Option
               className="option"
               name={`Option 0`}
               label={'Any Barber'}
               value={'Any Barber'}
-            />
+            /> */}
             {props.barbers.map((barber, index) => (
               <Option
                 className="option"
