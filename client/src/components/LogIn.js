@@ -32,6 +32,7 @@ const LogIn = (props) => {
             onChange={props.handleChange}
             required
           />
+          {props.loginError ? <p>Incorrect username or password</p> : null}
           <br />
           <button className="login-btn">LOG IN</button>
         </form>
