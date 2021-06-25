@@ -530,7 +530,7 @@ form {
   }
 
   .bottom-section {
-    height: 150vh;
+    height: 160vh;
     width: 97.5vw;
     background-color: rgb(36, 36, 36);
     transition: 200ms;
@@ -592,7 +592,7 @@ form {
     font-size: 2em;
     color: white;
     position: absolute;
-    top: 220vh;
+    top: 230vh;
     left: 32vw;
   }
 }
