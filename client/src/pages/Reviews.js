@@ -35,10 +35,6 @@ const Reviews = (props) => {
     <ReviewCard key={i} review={review} />
   ))
 
-  const addReviewBtnToggleHelper = () => {
-    dispatch({ type: 'toggleNewReview', payload: !state.newReview })
-  }
-
   return (
     <div className="servicesWrapper">
       <div>

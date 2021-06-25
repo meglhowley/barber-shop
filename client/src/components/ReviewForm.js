@@ -28,8 +28,6 @@ const ReviewForm = (props) => {
   const submitPost = async (e) => {
     e.preventDefault()
     try {
-      console.log(newPost)
-      // let token = localStorage.getItem('token')
       const res = await axios.post(`${BASE_URL}/reviews/create`, newPost)
       console.log(res.data)
       props.dispatch({
@@ -53,10 +51,10 @@ const ReviewForm = (props) => {
 
   return (
     <div className="reviewForm">
-      ReviewForm
       <form>
+        <h1>Add A Review:</h1>
         <Rating value={newPost.star} onChange={handleChange} name="star" />
-        <label>Body</label>
+        {/* <label>Body</label> */}
         <textarea
           onChange={handleChange}
           type="text"
@@ -64,17 +62,19 @@ const ReviewForm = (props) => {
           value={newPost.content}
           placeholder="Leave details about your review here!"
         />
-        <button onClick={submitPost}>Submit Review</button>
-        <button
-          onClick={() => {
-            props.dispatch({
-              type: 'toggleNewReview',
-              payload: !props.state.newReview
-            })
-          }}
-        >
-          Close Review
-        </button>
+        <div className="reviewFormBtns">
+          <button onClick={submitPost}>Submit Review</button>
+          <button
+            onClick={() => {
+              props.dispatch({
+                type: 'toggleNewReview',
+                payload: !props.state.newReview
+              })
+            }}
+          >
+            Close Review
+          </button>
+        </div>
       </form>
     </div>
   )
