@@ -70,6 +70,7 @@ const Booking = (props) => {
   useEffect(() => {
     findAllBarbers()
     findAllServices()
+    barberList(state.selectedDate)
   }, [])
 
   useEffect(() => {
@@ -156,8 +157,8 @@ const Booking = (props) => {
         />
       </div>
       <div className="available-wrapper">
-        <b>Available Appointments:</b>
-        {timeSlotMap}
+        <span className="avail-span">Available Appointments:</span>
+        <div className="timeslots-wrapper">{timeSlotMap}</div>
       </div>
     </div>
   )
