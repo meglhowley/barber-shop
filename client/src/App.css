@@ -397,3 +397,26 @@ ul {
 .please-log-in {
   margin-left: 38px;
 }
+
+.barber-pole-container {
+  overflow: hidden;
+  max-height: 50vh;
+  border: 1px solid black;
+}
+.rotating-barber-pole {
+  background: url('https://images-na.ssl-images-amazon.com/images/I/81AQYQBPsXL._AC_SY450_.jpg')
+    repeat-x;
+  height: 200vh;
+  width: 5076px;
+  animation: slide 20s linear infinite;
+  animation-direction: alternate;
+}
+
+@keyframes slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-1692px, 0, 0);
+  }
+}
