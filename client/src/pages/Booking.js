@@ -15,7 +15,8 @@ const iState = {
   services: [],
   openApptForm: false,
   selectedTime: null,
-  bookedAppointments: []
+  bookedAppointments: [],
+  warning: false
 }
 
 const reducer = (state, action) => {
@@ -38,6 +39,8 @@ const reducer = (state, action) => {
       return { ...state, bookedAppointments: action.payload }
     case 'setSelectedBarber':
       return { ...state, selectedBarber: action.payload }
+    case 'setWarning':
+      return { ...state, warning: action.payload }
     default:
       return state
   }
@@ -68,8 +71,10 @@ const Booking = (props) => {
   }
 
   const handleClick = (timeslot) => {
-    dispatch({ type: 'toggleOpenApptForm', payload: true })
-    dispatch({ type: 'setSelectedTime', payload: timeslot.slice(11) })
+    if (props.authenticated) {
+      dispatch({ type: 'toggleOpenApptForm', payload: true })
+      dispatch({ type: 'setSelectedTime', payload: timeslot.slice(11) })
+    }
   }
 
   useEffect(() => {
@@ -161,7 +166,11 @@ const Booking = (props) => {
             />
           ))}
         </Picklist>
+        {!props.authenticated ? (
+          <h3 className="warning-message">Please login before booking</h3>
+        ) : null}
         <span className="avail-span">Available Appointments:</span>
+
         <div className="timeslots-wrapper">{timeSlotMap}</div>
       </div>
     </div>

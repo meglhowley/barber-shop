@@ -59,17 +59,33 @@ const AccountPage = (props) => {
 
   const mappedAppointments = state.upcomingAppointments.map((appt, i) => (
     <div className="appointment-card" key={i}>
-      <button onClick={() => handleDelete(appt.id)}>Cancel Appointment</button>
-      <h3>{appt.date}</h3>
-      <h3>{appt.Service.name}</h3>
-      <h3>{`with ${appt.Barber.firstName} ${appt.Barber.lastInitial}.`}</h3>
+      <img
+        className="appt-img"
+        src="https://airows.com/.image/t_share/MTM4NTIzMTUyMTk5MTk4MTE5/img_9010jpg.jpg"
+      ></img>
+      <br />
+      <h1 className="appt-date">{`${appt.date} || ${appt.Service.name}`}</h1>
+      <div className="length-route">
+        <span>{`Time: ${appt.startTime}`}</span>
+        <span id="route">{` || with: ${appt.Barber.firstName} ${appt.Barber.lastInitial}`}</span>
+        <button className="cancel-btn" onClick={() => handleDelete(appt.id)}>
+          Cancel Appointment
+        </button>
+      </div>
     </div>
   ))
   const pastAppointments = state.pastAppointments.map((appt, i) => (
     <div className="appointment-card" key={i}>
-      <h3>{appt.date}</h3>
-      <h3>{appt.Service.name}</h3>
-      <h3>{`with ${appt.Barber.firstName} ${appt.Barber.lastInitial}.`}</h3>
+      <img
+        className="appt-img"
+        src="https://airows.com/.image/t_share/MTM4NTIzMTUyMTk5MTk4MTE5/img_9010jpg.jpg"
+      ></img>
+      <br />
+      <h1 className="appt-date">{`${appt.date} || ${appt.Service.name}`}</h1>
+      <div className="length-route">
+        <span>{`Time: ${appt.startTime}`}</span>
+        <span id="route">{` || with: ${appt.Barber.firstName} ${appt.Barber.lastInitial}`}</span>
+      </div>
     </div>
   ))
 
@@ -100,13 +116,13 @@ const AccountPage = (props) => {
   })
 
   return (
-    <div>
-      <h2>Upcoming Appointments</h2>
+    <div className="account-container">
+      <h2>Upcoming Appointments:</h2>
       <div className="upcoming-appointments">{mappedAppointments}</div>
-      <h2>Past Appointments</h2>
+      <h2>Past Appointments:</h2>
       <div className="past-appointments">{pastAppointments}</div>
-
-      <div>user reviews{userReviewsMap}</div>
+      <h2>Your Activity:</h2>
+      <div>{userReviewsMap}</div>
     </div>
   )
 }

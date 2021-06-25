@@ -597,11 +597,6 @@ form {
   color: white;
 }
 
-.appointment-card {
-  border: solid 1px black;
-  width: 400px;
-}
-
 .please-log-in {
   margin-left: 38px;
 }
@@ -701,6 +696,63 @@ form {
   to {
     opacity: 0.9;
   }
+}
+
+.account-container {
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0 auto;
+  flex-direction: column;
+  width: 70vw;
+}
+
+.upcoming-appointments {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.appointment-card {
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+  font-family: 'Lato', sans-serif;
+  width: 450px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  font-size: 0.9em;
+  height: 375px;
+  background-color: rgb(248, 246, 246);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.appt-date {
+  color: black;
+}
+
+.appt-img {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  width: 450px;
+  height: 275px;
+}
+
+.cancel-btn {
+  background-color: black;
+  box-shadow: none;
+  border-color: transparent;
+  color: white;
+  float: right;
+  margin-right: 5px;
+}
+
+.cancel-btn:hover {
+  color: black;
+  background-color: white;
+  border-color: black;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1000px) {
