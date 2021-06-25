@@ -4,7 +4,7 @@ import { useReducer, useEffect } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
 import moment from 'moment'
-import AppointmentForm from '../components/AppointmentFormTwo'
+import AppointmentForm from '../components/AppointmentForm'
 import { Modal, Option, Picklist } from 'react-rainbow-components'
 
 const iState = {
@@ -178,6 +178,8 @@ const Booking = (props) => {
 }
 
 export default Booking
+
+//
 
 // import React from 'react'
 // // import ReactDOM from 'react-dom'
