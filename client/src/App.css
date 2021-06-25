@@ -149,7 +149,7 @@ body {
   max-height: 200px;
   max-width: 200px;
   border-radius: 50%;
-  border: 1rem solid black;
+  /* border: 1rem solid black; */
   /* height: 200px;
   width: 200px; */
   /* max-width: 25%;
@@ -163,7 +163,7 @@ body {
 }
 
 .selectedBarber {
-  margin: 1rem auto;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -208,9 +208,10 @@ body {
 }
 
 .barberPageContainer {
-  max-width: 80vw;
-  margin: 0 auto;
-  background-color: grey;
+  max-width: 90vw;
+  margin: 0.5em auto;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
 .modal {

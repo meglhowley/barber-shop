@@ -38,7 +38,7 @@ const Barbers = (props) => {
       }}
       key={idx}
     >
-      <img src={barber.smallImage} height="200" width="200" />
+      <img src={barber.smallImage} height="100" width="100" />
       <h2>
         {barber.firstName} {barber.lastInitial}
       </h2>
