@@ -37,6 +37,10 @@ const ReviewForm = (props) => {
         payload: [res.data, ...props.state.reviews]
       })
       setNewPost({ star: 3, content: '' })
+      props.dispatch({
+        type: 'toggleNewReview',
+        payload: !props.state.newReview
+      })
       // props.dispatch({
       //   type: 'toggleNewReview',
       //   payload: !props.iState.newReview
