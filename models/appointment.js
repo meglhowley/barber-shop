@@ -3,13 +3,7 @@ const { Model } = require('sequelize')
 const Moment = require('moment')
 module.exports = (sequelize, DataTypes) => {
   class Appointment extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
       Appointment.belongsTo(models.User, {
         foreignKey: 'userId'
       })
@@ -52,12 +46,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       date: {
         type: DataTypes.STRING
-        //type: DataTypes.DATE,
-        // get: function (value) {
-        //   let currentDate = this.getDataValue(value)
-        //   console.log(currentDate)
-        //   return Moment(currentDate).utcOffset(-4)
-        // }
       },
       startTime: DataTypes.STRING,
       duration: DataTypes.INTEGER

@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react'
+import { useEffect, useReducer } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
 import moment from 'moment'
@@ -99,17 +99,12 @@ const AccountPage = (props) => {
     dispatch({ type: 'setForceUpdate', payload: res })
   }
 
-  const handleUserReviewUpdate = async (review_id) => {
-    // dispatch({ type: 'setForceUpdate', payload: res })
-  }
-
   const userReviewsMap = state.userReviews.map((review, idx) => {
     return (
       <EditableReviewCard
         key={idx}
         review={review}
         handleUserReviewDelete={handleUserReviewDelete}
-        handleUserReviewUpdate={handleUserReviewUpdate}
         dispatch={dispatch}
       />
     )
