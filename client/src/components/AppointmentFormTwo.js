@@ -4,33 +4,15 @@ import axios from 'axios'
 import { BASE_URL } from '../globals'
 import moment from 'moment'
 
-const AppointmentForm = (props) => {
-  const [selectedBarber, setState] = useState({
-    selectedBarber: {
-      label: 'Ernie',
-      name: 'Option 0'
-    }
-  })
+const AppointmentFormTwo = (props) => {
   const [selectedService, setSelectedService] = useState({
     selectedService: {
       label: 'Haircut',
       name: 'Option 0'
     }
   })
-  const [barberId, setBarberId] = useState(5)
   const [serviceId, setServiceId] = useState(6)
-  const [barberName, setBarberName] = useState('Ernie')
   const [serviceName, setServiceName] = useState('Haircut')
-
-  const findBarberId = () => {
-    let barberName = Object.values(selectedBarber)[0].label
-    props.barbers.forEach((barber, index) => {
-      if (barberName === barber.firstName) {
-        setBarberId(barber.id)
-        setBarberName(barber.firstName)
-      }
-    })
-  }
 
   const findServiceId = () => {
     let serviceName = Object.values(selectedService)[0].label
@@ -45,7 +27,7 @@ const AppointmentForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const res = await axios.post(`${BASE_URL}/appointment/create`, {
-      barberId: barberId,
+      barberId: props.barber.id,
       serviceId: serviceId,
       date: moment(props.selectedDate).format('YYYY-MM-DD'),
       duration: 60,
@@ -65,10 +47,6 @@ const AppointmentForm = (props) => {
   useEffect(() => {}, [])
 
   useEffect(() => {
-    findBarberId()
-  }, [selectedBarber])
-
-  useEffect(() => {
     findServiceId()
   }, [selectedService])
 
@@ -86,21 +64,6 @@ const AppointmentForm = (props) => {
           <h2>{timeRange}</h2>
         </div>
         <form onSubmit={handleSubmit}>
-          <Picklist
-            className="picklist"
-            onChange={(selectedBarber) => setState({ selectedBarber })}
-            value={selectedBarber.selectedBarber}
-            label="Select Your Barber"
-          >
-            {props.barbers.map((barber, index) => (
-              <Option
-                className="option"
-                name={`Option ${index + 1}`}
-                label={`${barber.firstName}`}
-                value={`${barber.firstName}`}
-              />
-            ))}
-          </Picklist>
           <Picklist
             onChange={(selectedService) =>
               setSelectedService({ selectedService })
@@ -124,7 +87,7 @@ const AppointmentForm = (props) => {
                 <u>{timeRange}</u>
               </li>
               <li>
-                You will be working with <u>{barberName}</u>
+                You will be working with <u>{props.barber.firstName}</u>
               </li>
               <li>
                 You will look and feel amazing after receiving a{' '}
@@ -141,4 +104,4 @@ const AppointmentForm = (props) => {
   )
 }
 
-export default AppointmentForm
+export default AppointmentFormTwo

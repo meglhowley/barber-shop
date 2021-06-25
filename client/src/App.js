@@ -13,6 +13,7 @@ import axios from 'axios'
 import { BASE_URL } from './globals'
 import Reviews from './pages/Reviews'
 import ConfirmPage from './pages/ConfirmPage'
+import BookingTwo from './pages/BookingTwo'
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
@@ -111,6 +112,11 @@ const App = () => {
           exact
           path="/booking"
           component={(props) => <Booking {...props} />}
+        />
+        <Route
+          exact
+          path="/bookingtwo"
+          component={(props) => <BookingTwo {...props} />}
         />
         <Route
           exact
