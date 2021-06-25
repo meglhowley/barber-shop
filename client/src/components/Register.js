@@ -15,10 +15,8 @@ const Register = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      console.log('submitted!')
-      console.log(registerForm)
       const res = await axios.post(`${BASE_URL}/auth/register`, registerForm)
-      console.log(res)
+
       handleRegisterForm({
         email: '',
         password: '',
