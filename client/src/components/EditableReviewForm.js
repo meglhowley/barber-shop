@@ -1,14 +1,13 @@
-import { useEffect, useState, useReducer } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
-import { Card, ButtonGroup, ButtonIcon, Rating } from 'react-rainbow-components'
+import { Rating } from 'react-rainbow-components'
 
 const EditableReviewForm = (props) => {
   const [newPost, setNewPost] = useState({
     content: props.review.content,
     star: props.review.star
   })
-  // const [posts, setPosts] = useState([])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -17,26 +16,12 @@ const EditableReviewForm = (props) => {
   const submitPost = async (e) => {
     e.preventDefault()
     try {
-      // console.log(newPost)
-      // let token = localStorage.getItem('token')
       const res = await axios.put(
         `${BASE_URL}/reviews/${props.review.id}`,
         newPost
       )
-      // console.log(res.data)
       props.setUpdateOpen(!props.updateOpen)
       props.dispatch({ type: 'setForceUpdate', payload: res })
-
-      // props.dispatch({
-      //   type: 'setReviews',
-      //   payload: [res.data, ...props.state.reviews]
-      // })
-      // setNewPost({ star: 3, content: '' })
-      // props.dispatch({
-      //   type: 'toggleNewReview',
-      //   payload: !props.iState.newReview
-      // })
-      // toggleCreatePostOpen(false)
     } catch (error) {
       console.log(error)
     }
@@ -46,7 +31,6 @@ const EditableReviewForm = (props) => {
     <div className="reviewForm">
       <form onSubmit={submitPost}>
         <Rating value={newPost.star} onChange={handleChange} name="star" />
-        {/* <label>Body</label> */}
         <textarea
           onChange={handleChange}
           type="text"
