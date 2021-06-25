@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom'
-// import { useEffect } from 'react'
 
 const Nav = (props) => {
   const handleClickLogIn = (e) => {

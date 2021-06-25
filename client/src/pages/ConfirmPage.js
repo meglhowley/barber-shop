@@ -1,5 +1,3 @@
-import { ProgressStep } from 'react-rainbow-components'
-
 const ConfirmPage = (props) => {
   const handleClickAppointments = () => {
     props.history.push('/account')
