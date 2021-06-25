@@ -174,10 +174,12 @@ body {
 .allServices {
   display: flex;
   flex-flow: column;
-  border: 5px solid black;
+  /* border: 1px solid black; */
   width: 60vw;
   margin: 1em auto;
   font-family: 'Lobster', cursive;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
 .allServices div {
@@ -379,8 +381,31 @@ ul {
 }
 
 .reviewCard {
-  border: 10px solid black;
+  /* border: 10px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: 1px;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  width: 60vw;
+  padding: 1em;
+}
+
+.all-reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.servicesWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#addReviewBtn {
+  margin: 1em;
 }
 
 .appointment-card {
