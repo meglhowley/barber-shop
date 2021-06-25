@@ -38,7 +38,7 @@ const Barbers = (props) => {
       }}
       key={idx}
     >
-      <img src={barber.smallImage} height="200" width="200" />
+      <img src={barber.smallImage} height="100" width="100" />
       <h2>
         {barber.firstName} {barber.lastInitial}
       </h2>
@@ -46,14 +46,19 @@ const Barbers = (props) => {
   ))
 
   return (
-    <div className="barberPageContainer">
-      <div className="selectedBarber">
-        <img src={state.selectedBarber.bigImage} />
-        <h1>
-          {state.selectedBarber.firstName} {state.selectedBarber.lastInitial}
-        </h1>
+    <div className="barberPage">
+      <div className="barberPageHeader">
+        <h1>Our Staff:</h1>
       </div>
-      <div className="allBarbers">{barbersMap}</div>
+      <div className="barberPageContainer">
+        <div className="selectedBarber">
+          <img src={state.selectedBarber.bigImage} />
+          <h1>
+            {state.selectedBarber.firstName} {state.selectedBarber.lastInitial}
+          </h1>
+        </div>
+        <div className="allBarbers">{barbersMap}</div>
+      </div>
     </div>
   )
 }

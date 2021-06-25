@@ -4,13 +4,11 @@ import { BASE_URL } from '../globals'
 import { Card, ButtonGroup, ButtonIcon, Rating } from 'react-rainbow-components'
 
 const EditableReviewForm = (props) => {
-  console.log('these are the props of editabel review form')
-  console.log(props)
   const [newPost, setNewPost] = useState({
     content: props.review.content,
     star: props.review.star
   })
-  const [posts, setPosts] = useState([])
+  // const [posts, setPosts] = useState([])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -19,13 +17,13 @@ const EditableReviewForm = (props) => {
   const submitPost = async (e) => {
     e.preventDefault()
     try {
-      console.log(newPost)
+      // console.log(newPost)
       // let token = localStorage.getItem('token')
       const res = await axios.put(
         `${BASE_URL}/reviews/${props.review.id}`,
         newPost
       )
-      console.log(res.data)
+      // console.log(res.data)
       props.setUpdateOpen(!props.updateOpen)
       props.dispatch({ type: 'setForceUpdate', payload: res })
 
@@ -46,10 +44,9 @@ const EditableReviewForm = (props) => {
 
   return (
     <div className="reviewForm">
-      ReviewForm
       <form onSubmit={submitPost}>
         <Rating value={newPost.star} onChange={handleChange} name="star" />
-        <label>Body</label>
+        {/* <label>Body</label> */}
         <textarea
           onChange={handleChange}
           type="text"
@@ -57,14 +54,16 @@ const EditableReviewForm = (props) => {
           value={newPost.content}
           placeholder="Leave details about your review here!"
         />
-        <button onClick={submitPost}>Update Review</button>
-        <button
-          onClick={() => {
-            props.setUpdateOpen(!props.updateOpen)
-          }}
-        >
-          Cancel Update of Review
-        </button>
+        <div className="reviewFormBtns">
+          <button onClick={submitPost}>Update Review</button>
+          <button
+            onClick={() => {
+              props.setUpdateOpen(!props.updateOpen)
+            }}
+          >
+            Cancel Update
+          </button>
+        </div>
       </form>
     </div>
   )

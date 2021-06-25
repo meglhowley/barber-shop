@@ -36,7 +36,10 @@ const Services = (props) => {
   ))
 
   return (
-    <div>
+    <div className="servicesContainer">
+      <div className="allServices">
+        <h1>Our Services:</h1>
+      </div>
       <div className="allServices">{servicesMapped}</div>
     </div>
   )

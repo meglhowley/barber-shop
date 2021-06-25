@@ -8,10 +8,12 @@ import { useReducer, useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
 import moment from 'moment'
-import AppointmentForm from '../components/AppointmentForm'
+import AppointmentFormTwo from '../components/AppointmentFormTwo'
+import { Modal, Option, Picklist } from 'react-rainbow-components'
 
 const iState = {
   selectedDate: new Date(),
+  selectedBarber: null,
   barbers: [],
   timeSlots: [],
   services: [],
@@ -38,12 +40,14 @@ const reducer = (state, action) => {
       return { ...state, selectedTime: action.payload }
     case 'setBookedAppointments':
       return { ...state, bookedAppointments: action.payload }
+    case 'setSelectedBarber':
+      return { ...state, selectedBarber: action.payload }
     default:
       return state
   }
 }
 
-const Booking = (props) => {
+const BookingTwo = (props) => {
   const [state, dispatch] = useReducer(reducer, iState)
 
   const findAllBarbers = async () => {
@@ -57,9 +61,14 @@ const Booking = (props) => {
   }
 
   const FindAppointmentByDate = async () => {
-    const dateString = moment(state.selectedDate).format('YYYY-MM-DD')
-    const res = await axios.get(`${BASE_URL}/appointment/date/${dateString}`)
-    dispatch({ type: 'setBookedAppointments', payload: res.data })
+    if (state.selectedBarber) {
+      const barberId = state.barbers[`${state.selectedBarber.name}`].id
+      const dateString = moment(state.selectedDate).format('YYYY-MM-DD')
+      const res = await axios.get(
+        `${BASE_URL}/appointment/barberdate?today=${dateString}&barber=${barberId}`
+      )
+      dispatch({ type: 'setBookedAppointments', payload: res.data })
+    }
   }
 
   const handleClick = (timeslot) => {
@@ -70,81 +79,61 @@ const Booking = (props) => {
   useEffect(() => {
     findAllBarbers()
     findAllServices()
-    barberList(state.selectedDate)
+    //barberList(state.selectedDate)
   }, [])
 
   useEffect(() => {
     FindAppointmentByDate()
-    // console.log(parseInt(state.bookedAppointments[0].startTime))
-  }, [state.selectedDate])
+    BarberList()
+  }, [state.selectedDate, state.selectedBarber])
 
-  const barberList = (value) => {
-    let start = 8
-    let slots = [...Array(8)].map((_, i) => ({ time: `${start + i}:00` }))
+  const BarberList = (value) => {
+    if (!state.selectedDate || !state.selectedBarber) {
+      return
+    }
+
+    let chosenBarber = state.barbers[`${state.selectedBarber.name}`]
+    let start = chosenBarber.availability.startTime
+    let numSlots = chosenBarber.availability.endTime - start
+    let slots = [...Array(numSlots)].map((_, i) => ({
+      time: `${start + i}:00`
+    }))
     let availTimes = slots.map(({ time }) => {
-      let date = moment(value).format('YYYY-MM-DD')
+      let date = moment(state.selectedDate).format('YYYY-MM-DD')
       return moment(`${date} ${time}`).format('YYYY-MM-DDThh:mm')
     })
     dispatch({ type: 'setTimeSlots', payload: availTimes })
-    dispatch({ type: 'setSelectedDate', payload: value })
   }
 
   const timeSlotMap = state.timeSlots.map((timeslot, index) => {
     let timeOnly = timeslot.slice(11)
-    if (state.bookedAppointments.length < 1) {
-      return (
-        <div>
-          <div onClick={() => handleClick(timeslot)} className="appt-card">
-            {parseInt(timeOnly) === 12
-              ? `${timeOnly} - 01:00`
-              : parseInt(timeOnly) + 1 < 10
-              ? `${timeOnly} - 0${parseInt(timeOnly) + 1}:00`
-              : `${timeOnly} - ${parseInt(timeOnly) + 1}:00`}
-          </div>
-          <AppointmentForm
-            apptTime={timeOnly}
-            barbers={state.barbers}
-            services={state.services}
-            openApptForm={state.openApptForm}
-            dispatch={dispatch}
-            userId={props.userId}
-            selectedDate={state.selectedDate}
-            selectedTime={state.selectedTime}
-            history={props.history}
-          />
+
+    if (state.bookedAppointments.some((appt) => appt.startTime === timeOnly)) {
+      return null
+    }
+
+    return (
+      <div>
+        <div onClick={() => handleClick(timeslot)} className="appt-card">
+          {parseInt(timeOnly) === 12
+            ? `${timeOnly} - 01:00`
+            : parseInt(timeOnly) + 1 < 10
+            ? `${timeOnly} - 0${parseInt(timeOnly) + 1}:00`
+            : `${timeOnly} - ${parseInt(timeOnly) + 1}:00`}
         </div>
-      )
-    }
-    for (let i = 0; i < state.bookedAppointments.length; i++) {
-      console.log(parseInt(timeOnly))
-      console.log(state.bookedAppointments[i].startTime)
-      if (
-        parseInt(timeOnly) !== parseInt(state.bookedAppointments[i].startTime)
-      ) {
-        return (
-          <div>
-            <div onClick={() => handleClick(timeslot)} className="appt-card">
-              {parseInt(timeOnly) === 12
-                ? `${timeOnly} - 01:00`
-                : parseInt(timeOnly) + 1 < 10
-                ? `${timeOnly} - 0${parseInt(timeOnly) + 1}:00`
-                : `${timeOnly} - ${parseInt(timeOnly) + 1}:00`}
-            </div>
-            <AppointmentForm
-              apptTime={timeOnly}
-              barbers={state.barbers}
-              services={state.services}
-              openApptForm={state.openApptForm}
-              dispatch={dispatch}
-              userId={props.userId}
-              selectedDate={state.selectedDate}
-              selectedTime={state.selectedTime}
-              history={props.history}
-            />
-          </div>
-        )
-      }
-    }
+        <AppointmentFormTwo
+          apptTime={timeOnly}
+          barber={state.barbers[`${state.selectedBarber.name}`]}
+          services={state.services}
+          openApptForm={state.openApptForm}
+          dispatch={dispatch}
+          userId={props.userId}
+          selectedDate={state.selectedDate}
+          selectedTime={state.selectedTime}
+          history={props.history}
+        />
+      </div>
+    )
   })
 
   return (
@@ -153,11 +142,30 @@ const Booking = (props) => {
         <Calendar
           className="calendar"
           value={state.selectedDate}
-          onChange={(value) => barberList(value)}
+          onChange={(value) =>
+            dispatch({ type: 'setSelectedDate', payload: value })
+          }
           minDate={new Date()}
         />
       </div>
       <div className="available-wrapper">
+        <Picklist
+          className="picklist"
+          onChange={(selectedBarber) =>
+            dispatch({ type: 'setSelectedBarber', payload: selectedBarber })
+          }
+          value={state.selectedBarber}
+          label="Select Your Barber"
+        >
+          {state.barbers.map((barber, index) => (
+            <Option
+              className="option"
+              name={index}
+              label={`${barber.firstName}`}
+              value={`${barber.firstName}`}
+            />
+          ))}
+        </Picklist>
         <span className="avail-span">Available Appointments:</span>
         <div className="timeslots-wrapper">{timeSlotMap}</div>
       </div>
@@ -165,4 +173,4 @@ const Booking = (props) => {
   )
 }
 
-export default Booking
+export default BookingTwo
