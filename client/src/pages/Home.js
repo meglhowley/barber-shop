@@ -73,8 +73,8 @@ const Home = () => {
   }
 
   return (
-    <body ref={topRef}>
-      <div className="home-wrapper">
+    <body>
+      <div ref={topRef} className="home-wrapper">
         <div className="top-section">
           <div className="title">You want to look good.</div>
           <div onClick={handleDownClick} className="double-arrow-div">

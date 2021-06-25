@@ -89,6 +89,7 @@ const App = () => {
           loginForm={loginForm}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
+          loginError={loginError}
         />
         <Register
           registerOpen={registerOpen}
