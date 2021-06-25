@@ -143,7 +143,7 @@ body {
 .allBarbers {
   display: flex;
   flex-wrap: wrap;
-  font-family: 'Lobster', cursive;
+  font-family: 'Bebas Neue', sans-serif;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1em auto;
@@ -194,7 +194,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: 'Lobster', cursive;
+  font-family: 'Bebas Neue', sans-serif;
   width: 90vw;
 }
 
@@ -204,7 +204,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: 'Lobster', cursive;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 3rem;
 }
 
@@ -214,7 +214,7 @@ body {
   /* border: 1px solid black; */
   width: 60vw;
   margin: 1em auto;
-  font-family: 'Lobster', cursive;
+  font-family: 'Bebas Neue', sans-serif;
   box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
@@ -229,7 +229,7 @@ body {
 
 .barberPageHeader h1 {
   margin: 0.5em 0.5em 0.25em 0.5em;
-  font-family: 'Lobster', cursive;
+  font-family: 'Bebas Neue', sans-serif;
   text-decoration: underline;
 }
 
@@ -244,7 +244,7 @@ body {
 
 .allServices h1 {
   margin: 0.5em 0.5em 0.25em 0.5em;
-  font-family: 'Lobster', cursive;
+  font-family: 'Bebas Neue', sans-serif;
   text-decoration: underline;
   color: black;
 }
@@ -548,7 +548,7 @@ form {
   left: 0;
   top: 0; */
   /* margin: 1em; */
-  font-family: 'Lobster', sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
   color: gray;
   margin: 0;
 }
