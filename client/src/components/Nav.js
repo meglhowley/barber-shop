@@ -31,23 +31,24 @@ const Nav = (props) => {
       <NavLink className="nav-link" to="/reviews">
         Reviews
       </NavLink>
-      <div className="btns-container">
-        <button
-          onClick={
-            !props.authenticated
-              ? handleClickRegister
-              : () => props.history.push('/account')
-          }
-          className="nav-btn"
-        >
-          {!props.authenticated ? 'Sign Up' : 'My Account'}
-        </button>
-        <button
-          onClick={!props.authenticated ? handleClickLogIn : props.logOut}
-          className="nav-btn"
-        >
-          {!props.authenticated ? 'Log In' : 'Log Out'}
-        </button>
+      <button
+        onClick={
+          !props.authenticated
+            ? handleClickRegister
+            : () => props.history.push('/account')
+        }
+        className="nav-btn"
+      >
+        {!props.authenticated ? 'Sign Up' : 'My Account'}
+      </button>
+      <button
+        onClick={!props.authenticated ? handleClickLogIn : props.logOut}
+        className="nav-btn"
+      >
+        {!props.authenticated ? 'Log In' : 'Log Out'}
+      </button>
+      <div className="barber-pole-container">
+        <div className="rotating-barber-pole"></div>
       </div>
     </div>
   )

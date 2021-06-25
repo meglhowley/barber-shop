@@ -21,7 +21,6 @@ body {
 .nav-bar {
   padding-top: 22px;
   background: rgb(36, 36, 36);
-  height: 50px;
   text-align: right;
   font-family: 'Bebas Neue', cursive;
   font-size: 1.5em;
@@ -98,12 +97,6 @@ body {
   background-color: rgb(173, 148, 2);
   color: white;
   transition: 100ms ease-in;
-}
-
-.btns-container {
-  float: right;
-  display: flex;
-  width: fit-content;
 }
 
 .title {
@@ -402,10 +395,11 @@ ul {
   overflow: hidden;
   max-height: 2vh;
   border: 1px solid black;
+  width: 100vw;
 }
 .rotating-barber-pole {
   background: url('https://i.imgur.com/yDRWESW.jpg?2') repeat-x;
-  height: 200vh;
+  height: 2vh;
   width: 5076px;
   animation: slide 60s linear infinite;
   animation-direction: alternate;
