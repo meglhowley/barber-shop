@@ -55,6 +55,7 @@ const App = () => {
       //setUserId(res.data.user.id)
     } catch (error) {
       console.log(error)
+      setLoginError(error.response.data.msg)
     }
   }
 
@@ -89,6 +90,7 @@ const App = () => {
           loginForm={loginForm}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
+          loginError={loginError}
         />
         <Register
           registerOpen={registerOpen}
