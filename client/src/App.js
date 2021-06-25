@@ -93,6 +93,7 @@ const App = () => {
           registerOpen={registerOpen}
           toggleRegisterOpen={toggleRegisterOpen}
           setAuthenticated={setAuthenticated}
+          toggleLoginOpen={toggleLoginOpen}
         />
       </header>
       <Switch>
