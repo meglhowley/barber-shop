@@ -8,24 +8,29 @@ const EditableReviewCard = (props) => {
 
   if (!updateOpen) {
     return (
-      <div className="editableReviewCard">
-        <Rating value={props.review.star} readOnly />
-        <h3>{props.review.content}</h3>
-        <h4>{moment(props.review.createdAt).fromNow()}</h4>
-        <button
-          onClick={() => {
-            props.handleUserReviewDelete(props.review.id)
-          }}
-        >
-          Delete Review
-        </button>
-        <button
-          onClick={() => {
-            setUpdateOpen(!updateOpen)
-          }}
-        >
-          Edit Review
-        </button>
+      <div className="reviewCard">
+        <div className="reviewCardRowOne">
+          <h4>{moment(props.review.createdAt).fromNow()}</h4>
+          <Rating value={props.review.star} readOnly />
+        </div>
+
+        <h5>{props.review.content}</h5>
+        <div className="reviewFormBtns">
+          <button
+            onClick={() => {
+              props.handleUserReviewDelete(props.review.id)
+            }}
+          >
+            Delete Review
+          </button>
+          <button
+            onClick={() => {
+              setUpdateOpen(!updateOpen)
+            }}
+          >
+            Edit Review
+          </button>
+        </div>
       </div>
     )
   } else {

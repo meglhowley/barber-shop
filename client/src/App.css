@@ -137,11 +137,13 @@ body {
   font-family: 'Lobster', cursive;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
+  margin: 0 auto 1em auto;
+  gap: 2em;
 }
 
 .allBarbers h2 {
   text-align: center;
+  margin: 0;
 }
 
 .allBarbers img {
@@ -154,12 +156,27 @@ body {
   width: 200px; */
   /* max-width: 25%;
   max-height: 25%; */
+  box-shadow: 0 0 1rem 0.05rem gray;
+}
+
+.allBarbers img:hover {
+  margin: 0.5rem;
+  max-height: 200px;
+  max-width: 200px;
+  border-radius: 50%;
+  /* border: 1rem solid black; */
+  /* height: 200px;
+  width: 200px; */
+  /* max-width: 25%;
+  max-height: 25%; */
+  box-shadow: 0 0 1rem 0.05rem black;
 }
 
 .selectedBarber img {
   max-height: 70vh;
-  margin: 0 auto;
+  margin: 0 auto 0.5rem auto;
   max-width: 100%;
+  box-shadow: 0 0 1rem 0.05rem gray;
 }
 
 .selectedBarber {
@@ -169,6 +186,16 @@ body {
   align-items: center;
   justify-content: center;
   font-family: 'Lobster', cursive;
+}
+
+.selectedBarber h1 {
+  margin: 0 0 1em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lobster', cursive;
+  font-size: 3rem;
 }
 
 .allServices {
@@ -182,6 +209,36 @@ body {
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
+.barberPageHeader {
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  width: 90vw;
+  max-width: 90vw;
+  margin: 1em 0;
+}
+
+.barberPageHeader h1 {
+  margin: 0.5em 0.5em 0.25em 0.5em;
+  font-family: 'Lobster', cursive;
+  text-decoration: underline;
+}
+
+.barberPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90vw;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.allServices h1 {
+  margin: 0.5em 0.5em 0.25em 0.5em;
+  font-family: 'Lobster', cursive;
+  text-decoration: underline;
+  color: black;
+}
+
 .allServices div {
   /* align-items: center; */
   justify-content: center;
@@ -193,7 +250,7 @@ body {
 }
 
 .allServices div h3 {
-  color: green;
+  /* color: green; */
   position: absolute;
   top: 0;
   right: 0;
@@ -205,8 +262,7 @@ body {
 }
 
 .allServices div p {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .barberPageContainer {
@@ -380,6 +436,19 @@ ul {
   transition: 100ms ease-in;
 }
 
+.editableReviewCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1px;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  width: 60vw;
+  padding: 1em;
+  margin: 1em;
+  position: relative;
+}
+
 .reviewCard {
   /* border: 10px solid black; */
   display: flex;
@@ -404,6 +473,18 @@ ul {
   font-family: 'Bebas Neue', cursive;
   border: transparent;
   font-size: 1em;
+}
+
+.reviewCard button {
+  margin: 1em 0.25em;
+  padding: 1em;
+  box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  background-color: crimson;
+  color: whitesmoke;
+  border-radius: 20px;
+  font-family: 'Bebas Neue', cursive;
+  border: transparent;
+  font-size: 0.85em;
 }
 
 .reviewForm form {
@@ -446,7 +527,7 @@ ul {
   left: 0;
   top: 0; */
   /* margin: 1em; */
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lobster', sans-serif;
   color: gray;
   margin: 0;
 }
@@ -458,7 +539,7 @@ ul {
   /* margin: 1em; */
   font-family: 'Lato', sans-serif;
   font-size: 1.5em;
-  margin: 1em 0 0 0;
+  margin: 1em 0 1em 0;
 }
 
 .reviewCard h4 {
@@ -506,8 +587,9 @@ ul {
 
 .barber-pole-container {
   overflow: hidden;
-  max-height: 2vh;
-  border: 1px solid black;
+  max-height: 3vh;
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
   width: 100vw;
 }
 .rotating-barber-pole {

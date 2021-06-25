@@ -46,14 +46,19 @@ const Barbers = (props) => {
   ))
 
   return (
-    <div className="barberPageContainer">
-      <div className="selectedBarber">
-        <img src={state.selectedBarber.bigImage} />
-        <h1>
-          {state.selectedBarber.firstName} {state.selectedBarber.lastInitial}
-        </h1>
+    <div className="barberPage">
+      <div className="barberPageHeader">
+        <h1>Our Staff:</h1>
       </div>
-      <div className="allBarbers">{barbersMap}</div>
+      <div className="barberPageContainer">
+        <div className="selectedBarber">
+          <img src={state.selectedBarber.bigImage} />
+          <h1>
+            {state.selectedBarber.firstName} {state.selectedBarber.lastInitial}
+          </h1>
+        </div>
+        <div className="allBarbers">{barbersMap}</div>
+      </div>
     </div>
   )
 }
