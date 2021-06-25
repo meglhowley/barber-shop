@@ -20,22 +20,41 @@ This application was built using the PERN stack: PostgreSQL/Express/React/Node.j
 ### *ERD*
 ![ERD](https://imgur.com/m0Rh79h.jpg)
 ***
+### *CHD*
+![CHD](https://imgur.com/O2pn1Bh.jpg)
+***
 ### *Getting Started*
-![landing](https://airows.com/.image/t_share/MTM4NTIzMTUyMTk5MTk4MTE5/img_9010jpg.jpg)
-Instructions on how to navigate the app here.
+![landing](https://imgur.com/pRoc7ri.jpg)
+To get started, sign up and login.  From the navigation bar on the Home Page, you can navigate to a variety of areas:
+* Barbers - Find out more info about the barbers at the shop
+* Services - Get a list of services and pricing
+* Book an Appointment - book an appointment with your desired barber and service
+* Reviews - read reviews from others and add your own
+* My Account - view your upcoming and past appointments and your past reviews
+
+![reviews](https://imgur.com/luB0Uho.jpg)
+Read others reviews, and add your own if you are logged in!
+
+![booking](https://imgur.com/Hl7UWir.jpg)
+To book an appointment, select a date and your desired barber.  Make sure that you are logged in before you click on the time slot that works for you. You will only see timeslots that are open for the barber that day. On the popup appointment form, select your service and confirm the details.  From the confirmation page, you can go back to home or view your account.
+
+![booking](https://imgur.com/ScsbNbQ.jpg)
+On your account page, you can view and cancel upcoming appointments and view any past appointments.  Also, you can view, edit, and delete any reviews that you have written.
+
   ***
  ### *Future Updates*
 #### Coming Soon:
-1. Future Update 1
-2. Future Update 2
-3. Future Update 3
+- [] Add functionality for 30 minute timeslots
+- [] Add admin user to add barbers and edit their availability from the front end
+   
 
 ***
 ### *Credits*
-#### Please take note of the references below:
-1. Credit 1
-2. Credit 2
-3. Credit 3
-4. Credit 4
-5. GA Instructors Michael Lackey, Andre Pato, and Hunter Long.
-####
+##### Components utilized: 
+* React Rainbow Components: [React-Rainbox](https://react-rainbow.io/)
+* Moment: [Moment](https://momentjs.com/)
+
+##### References:
+* Infinite scrolling background image: [CSS-Tricks](https://css-tricks.com/books/fundamental-css-tactics/infinite-scrolling-background-image/)
+* Scroll a Component into View: [Robin van der Vleuten ](https://robinvdvleuten.nl/blog/scroll-a-react-component-into-view/)
+* GA Instructors: Andre Pato, Michael Lackey, and Hunter Long.
