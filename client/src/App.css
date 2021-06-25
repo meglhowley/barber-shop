@@ -174,7 +174,7 @@ body {
 
 .selectedBarber img {
   max-height: 70vh;
-  margin: 0 auto 0.5rem auto;
+  margin: 1rem auto 0.75rem auto;
   max-width: 100%;
   box-shadow: 0 0 1rem 0.05rem gray;
 }
@@ -186,6 +186,7 @@ body {
   align-items: center;
   justify-content: center;
   font-family: 'Lobster', cursive;
+  width: 90vw;
 }
 
 .selectedBarber h1 {
