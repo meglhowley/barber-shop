@@ -400,15 +400,14 @@ ul {
 
 .barber-pole-container {
   overflow: hidden;
-  max-height: 50vh;
+  max-height: 2vh;
   border: 1px solid black;
 }
 .rotating-barber-pole {
-  background: url('https://images-na.ssl-images-amazon.com/images/I/81AQYQBPsXL._AC_SY450_.jpg')
-    repeat-x;
+  background: url('https://i.imgur.com/yDRWESW.jpg?2') repeat-x;
   height: 200vh;
   width: 5076px;
-  animation: slide 20s linear infinite;
+  animation: slide 60s linear infinite;
   animation-direction: alternate;
 }
 

@@ -96,6 +96,9 @@ const App = () => {
           setAuthenticated={setAuthenticated}
           toggleLoginOpen={toggleLoginOpen}
         />
+        <div className="barber-pole-container">
+          <div className="rotating-barber-pole"></div>
+        </div>
       </header>
       <Switch>
         <Route exact path="/" component={(props) => <Home {...props} />} />
